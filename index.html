@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sydney Groves — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1a2e;
+    --paper: #f5f2eb;
+    --accent: #c3a1e0;   /* lighter lavender */
+    --muted: #7a7068;
+    --cream: #ede9df;
+    --gold: #d4b8f0;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(245,242,235,0.88); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  nav .logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--ink); text-decoration: none; }
+  .nav-pills { display: flex; gap: 0.4rem; background: rgba(0,0,0,0.05); padding: 0.3rem; border-radius: 100px; }
+  .nav-pill { text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; color: var(--muted); padding: 0.4rem 1.1rem; border-radius: 100px; transition: background 0.2s, color 0.2s; }
+  .nav-pill:hover { background: white; color: var(--ink); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+
+  /* HERO */
+  .hero { background: var(--paper); border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .hero-banner {
+    position: relative; height: 55vh; min-height: 340px; overflow: hidden;
+  }
+  .hero-banner-img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    filter: grayscale(100%) brightness(0.62);
+  }
+  .hero-banner-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.45) 100%);
+  }
+  .hero-banner-content {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 3rem 10vw;
+  }
+  .hero-banner-eyebrow {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(235,210,255,0.92); margin-bottom: 0.6rem;
+  }
+  .hero-banner-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 700; line-height: 1.05; color: white; letter-spacing: -0.02em;
+    margin-bottom: 0.7rem;
+  }
+  .hero-banner-sub {
+    font-size: 0.9rem; font-weight: 400;
+    color: rgba(235,210,255,0.78); letter-spacing: 0.1em;
+  }
+
+  /* Profile card */
+  .hero-card {
+    padding: 1rem 10vw 4rem;
+    max-width: 100%;
+    opacity: 0; animation: fadeUp 0.9s 0.3s forwards;
+  }
+  .hero-avatar-banner {
+    position: absolute; top: 6rem; right: 10vw; z-index: 10;
+    width: 140px; height: 140px; border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid rgba(255,255,255,0.25);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+  }
+  .hero-avatar-banner img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  }
+  .hero-avatar { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .hero-right { padding-top: 0; }
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem); font-weight: 300; color: var(--ink);
+    margin-bottom: 0.5rem; display: block; line-height: 1.3;
+    letter-spacing: 0.05em;
+  }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--muted); line-height: 1.8;
+    margin-bottom: 1.75rem; max-width: 100%;
+  }
+
+  .hero-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.5rem; }
+  .hero-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.65rem 1.4rem; border-radius: 100px;
+    font-size: 0.85rem; font-weight: 500; text-decoration: none !important;
+    transition: all 0.22s; cursor: pointer;
+  }
+  .hero-btn.primary { background: var(--ink); color: white !important; border: 2px solid var(--ink); }
+  .hero-btn.primary:hover { background: var(--accent); border-color: var(--accent); }
+  .hero-btn.secondary { background: transparent; border: 2px solid rgba(0,0,0,0.18); color: var(--ink) !important; }
+  .hero-btn.secondary:hover { border-color: var(--accent); color: var(--accent) !important; }
+  /* Force buttons to stay centered & evenly bordered, overriding any stray inline edits */
+  .hero-links .hero-btn { display: inline-flex !important; align-items: center !important; justify-content: center !important; text-align: center !important; border-width: 2px !important; height: auto !important; padding: 0.65rem 1.4rem !important; margin: 0 !important; }
+
+  /* ABOUT */
+  .about {
+    padding: 6rem 10vw; border-top: 1px solid rgba(0,0,0,0.08);
+    max-width: 100%;
+    width: 100%;
+  }
+  .about-label { font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 1.5rem; }
+  .about h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3vw, 3rem); line-height: 1.2; margin-bottom: 1.5rem; }
+  .about p { color: var(--muted); line-height: 1.8; font-size: clamp(1rem, 1.3vw, 1.15rem); margin-bottom: 1rem; max-width: 700px; }
+  .about p a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .stat { padding: 1.5rem; background: var(--cream); border-radius: 8px; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--accent); line-height: 1; margin-bottom: 0.4rem; }
+  .stat-label { font-size: 0.8rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* PROJECTS */
+  .projects-section { padding: 5rem 10vw; border-top: 1px solid rgba(0,0,0,0.08); }
+  .projects-section .section-label { font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 1rem; }
+  .projects-section > h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.15; margin-bottom: 3rem; }
+  .projects-grid { display: flex; flex-direction: column; gap: 1.5rem; max-width: 680px; }
+  .projects-section { display: flex; flex-direction: column; align-items: center; }
+  .projects-section .section-label, .projects-section > h2 { align-self: flex-start; }
+  .project-card { border-radius: 12px; overflow: hidden; background: var(--cream); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; text-decoration: none; color: var(--ink); display: flex; flex-direction: row; width: 100%; max-width: 700px; }
+  .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+  .project-card-img { width: 200px; min-width: 200px; flex-shrink: 0; overflow: hidden; min-height: 160px; }
+  .project-card-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.5s ease; display: block; }
+  .project-card:hover .project-card-img img { transform: scale(1.05); }
+  .project-card-body { padding: 1.5rem 2rem; display: flex; flex-direction: column; justify-content: center; flex: 1; }
+  .project-card-meta { font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 0.5rem; }
+  .project-card-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; line-height: 1.25; margin-bottom: 0.6rem; }
+  .project-card-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+  .project-card-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1rem; font-size: 0.8rem; font-weight: 500; color: var(--accent); text-decoration: none; }
+  .project-card-link::after { content: ' →'; }
+
+  /* TELESCOPE DETAIL */
+  .telescope-detail { display: none; padding-top: 5rem; position: relative; z-index: 1; }
+  .telescope-detail.active { display: block; min-height: 100vh; background: var(--paper); }
+  .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1.5rem 10vw 0; font-size: 0.82rem; font-weight: 500; color: var(--muted); text-decoration: none; cursor: pointer; letter-spacing: 0.04em; transition: color 0.2s; background: none; border: none; }
+  .back-btn:hover { color: var(--accent); }
+  .project-hero { position: relative; overflow: hidden; height: 75vh; margin: 1.5rem 10vw 4rem; border-radius: 16px; }
+  .project-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+  .project-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,26,46,0.85) 0%, rgba(26,26,46,0.2) 50%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 3rem; }
+  .project-hero-meta { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.6); margin-bottom: 0.75rem; }
+  .project-hero h3 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 4rem); color: white; line-height: 1.1; margin-bottom: 0.75rem; }
+  .project-hero-badge { display: inline-block; background: var(--accent); color: white; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.35rem 0.85rem; border-radius: 100px; }
+  .project-body { padding: 0 10vw; max-width: 1400px; }
+  .project-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-bottom: 5rem; align-items: start; }
+  .project-intro h4 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 1rem; line-height: 1.3; }
+  .project-intro p { color: var(--muted); line-height: 1.85; font-size: 1rem; margin-bottom: 1rem; }
+  .aside { padding: 1.5rem; background: var(--cream); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; font-size: 0.95rem; color: var(--ink); line-height: 1.7; margin-bottom: 1rem; }
+  .aside strong { font-weight: 500; }
+  .parts-section { padding: 0 10vw 6rem; }
+  .parts-label { font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 1rem; }
+  .parts-section > h3 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 3rem; }
+  .part-row { display: flex; flex-direction: column; border-top: 1px solid rgba(0,0,0,0.08); }
+  .part-row:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
+  .part-row.flip { flex-direction: column; }
+  .part-row .part-img, .part-row .part-imgs-grid { order: 1; }
+  .part-row .part-text { order: 2; }
+  .part-imgs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; justify-items: center; }
+  .part-imgs-grid img { width: auto; max-width: 100%; height: auto; max-height: 340px; object-fit: contain; display: block; border-radius: 8px; }
+  .part-img { text-align: center; }
+  .part-img img { width: auto; max-width: 100%; height: auto; max-height: 400px; object-fit: contain; display: block; margin: 0 auto; border-radius: 8px; }
+  .part-text { padding: 2.5rem 3rem; display: flex; flex-direction: column; justify-content: flex-start; background: var(--paper); }
+  .part-number { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 700; color: rgba(0,0,0,0.05); line-height: 1; margin-bottom: 0.5rem; }
+  .part-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 0.3rem; line-height: 1.2; }
+  .part-subtitle { font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1rem; }
+  .part-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 0.75rem; }
+  .part-struggle { background: var(--cream); border-left: 3px solid var(--gold); padding: 0.85rem 1rem; font-size: 0.88rem; color: var(--ink); line-height: 1.7; border-radius: 0 6px 6px 0; font-style: italic; }
+  .part-struggle::before { content: '⚠ '; font-style: normal; font-size: 0.8rem; }
+
+  /* RESULTS */
+  .results-section { padding: 5rem 10vw; background: var(--ink); color: white; }
+  .results-section .section-label { font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 1rem; }
+  .results-section h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 3rem); margin-bottom: 3rem; max-width: 700px; line-height: 1.2; }
+  .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem; }
+  .result-card { padding: 2rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; }
+  .result-num { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--gold); margin-bottom: 0.5rem; }
+  .result-label { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+  .results-section > p { color: rgba(255,255,255,0.6); line-height: 1.8; max-width: 700px; font-size: 1rem; }
+
+  /* RESEARCH */
+  .research-section { padding: 5rem 10vw; border-top: 1px solid rgba(0,0,0,0.08); }
+  .research-section .section-label { font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 1rem; }
+  .research-section > h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.15; margin-bottom: 3rem; }
+  .research-grid { display: flex; flex-direction: column; gap: 0; max-width: 860px; }
+  .research-card { padding: 2rem 2.5rem; background: var(--cream); border-radius: 12px; color: var(--ink); display: flex; align-items: flex-start; gap: 1.5rem; transition: transform 0.2s ease, box-shadow 0.2s ease; border: 1px solid transparent; margin-bottom: 1.5rem; }
+  .research-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.09); }
+  .research-card > div { flex: 1; min-width: 0; }
+  .research-card-icon { font-size: 1.8rem; flex-shrink: 0; margin-top: 0.25rem; }
+  .research-card-meta { font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.5rem; margin-top: 0.4rem; display: block; }
+  .research-card-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; line-height: 1.2; margin-bottom: 0; }
+  .research-card-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-top: 0.5rem; }
+
+  /* SIDEQUESTS */
+  .sidequests-section { padding: 3rem 10vw; border-top: 1px solid rgba(0,0,0,0.08); display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+  .sidequest-label { font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); white-space: nowrap; }
+  .sidequest-card { display: inline-flex; align-items: center; gap: 0.75rem; padding: 0.9rem 1.4rem; background: var(--cream); border-radius: 100px; text-decoration: none; color: var(--ink); font-size: 0.88rem; font-weight: 500; transition: background 0.2s, color 0.2s; }
+  .sidequest-card:hover { background: var(--ink); color: white; }
+
+  /* CONTACT */
+  .contact { padding: 6rem 10vw; border-top: 1px solid rgba(0,0,0,0.08); max-width: 600px; }
+  .contact .section-label { font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 1rem; }
+  .contact h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 1.5rem; line-height: 1.2; }
+  .contact p { color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link { display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; background: var(--cream); border-radius: 10px; text-decoration: none; color: var(--ink); font-weight: 500; font-size: 0.95rem; transition: background 0.2s, transform 0.2s; }
+  .contact-link:hover { background: var(--accent); color: white; transform: translateX(4px); }
+
+  footer { padding: 2rem 10vw; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--muted); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+
+  .hero-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .hero-left-col { display: flex; flex-direction: column; }
+  .hero-right-col { padding-top: 0.5rem; }
+  @media (max-width: 768px) {
+    .hero-two-col { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+
+  /* ---------- RESPONSIVE + REQUESTED TWEAKS ---------- */
+  img { max-width: 100%; }
+  .part-number { display: none; }            /* drop 01 02 03 build-log numbers */
+  #about, #projects, #research, #contact { scroll-margin-top: 84px; }
+
+  @media (max-width: 900px) {
+    .project-intro { grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 3.5rem; }
+  }
+  @media (max-width: 760px) {
+    nav { padding: 0.8rem 1.25rem; }
+    .project-hero { height: auto; aspect-ratio: 4 / 3; margin: 1rem 6vw 2.5rem; }
+    .project-hero-overlay { padding: 1.75rem; }
+    .results-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+  }
+  @media (max-width: 620px) {
+    nav { padding: 0.7rem 1rem; flex-wrap: wrap; gap: 0.5rem 0.75rem; }
+    .nav-pills { gap: 0.15rem; padding: 0.25rem; }
+    .nav-pill { padding: 0.4rem 0.75rem; font-size: 0.72rem; letter-spacing: 0.03em; }
+    .hero-banner { height: 48vh; min-height: 300px; }
+    .hero-banner-content { padding: 2rem 7vw; }
+    .hero-avatar-banner { width: 84px; height: 84px; top: 4.6rem; right: 7vw; border-width: 3px; }
+    .hero-card { padding: 1rem 7vw 3rem; }
+    .hero-two-col { gap: 1.25rem; }
+    .about, .projects-section, .research-section, .contact, .results-section { padding-left: 7vw; padding-right: 7vw; }
+    .project-card { flex-direction: column; max-width: 100%; }
+    .project-card-img { width: 100%; min-width: 0; min-height: 0; height: 190px; }
+    .project-card-body { padding: 1.25rem 1.5rem; }
+    .project-body, .parts-section, .sidequests-section { padding-left: 7vw; padding-right: 7vw; }
+    .sidequests-section { gap: 1rem; }
+    .part-imgs-grid { grid-template-columns: 1fr; max-height: none; }
+    .part-imgs-grid img { height: auto; max-height: 420px; }
+    .part-img { max-height: none; overflow: visible; }
+    .part-img img { height: auto; }
+    .part-text { padding: 1.5rem 1.4rem; }
+    .results-section h3, .projects-section > h2, .research-section > h2 { font-size: 2rem; }
+  }
+  @media (max-width: 400px) {
+    nav .logo { font-size: 1rem; }
+    .nav-pill { padding: 0.35rem 0.55rem; font-size: 0.66rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo" onclick="showMain(); return false;">Sydney Groves</a>
+  <div class="nav-pills">
+    <a href="#about" class="nav-pill" onclick="showMain()">About</a>
+    <a href="#projects" class="nav-pill" onclick="showMain()">Projects</a>
+    <a href="#research" class="nav-pill" onclick="showMain()">Research</a>
+    <a href="#contact" class="nav-pill" onclick="showMain()">Contact</a>
+  </div>
+</nav>
+
+<div id="main-page">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-banner">
+    <img src="images/00-virginia-tech-campus.jpg" class="hero-banner-img" alt="Virginia Tech campus" />
+    <div class="hero-banner-overlay"></div>
+    <div class="hero-banner-content">
+      <p class="hero-banner-eyebrow">Portfolio &middot; 2026</p>
+      <h1 class="hero-banner-name">Sydney Groves</h1>
+      <p class="hero-banner-sub">Computer Engineering &nbsp;&middot;&nbsp; Neuroscience &nbsp;&middot;&nbsp; Virginia Tech</p>
+    </div>
+    <div class="hero-avatar-banner">
+      <img src="images/01-sydney-groves.jpg" alt="Sydney Groves" class="hero-avatar" />
+    </div>
+  </div>
+  <div class="hero-card" style="font-size: 20px; font-family: Nunito">
+    <div class="hero-right">
+      <div class="hero-two-col">
+        <div class="hero-left-col">
+          <p class="hero-eyebrow" style="font-family: Nunito; font-size: 30px; margin: 40px 0px 8px">50% engineer.<br>50% scientist.<br><em style="font-family: Nunito; font-style: italic; font-weight: 600; color: var(--accent); font-size: 35px; letter-spacing: 0.05em; margin-bottom: 2rem; display: block; height: 70px; margin: 10px 0px 32px; width: 288px">100% 
+committed.</em></p>
+          <div class="hero-links">
+            <a href="mailto:Sydney@groveshome.com" class="hero-btn primary" style="justify-content: center;">&#9993; Get in touch</a>
+            <a href="https://www.linkedin.com/in/sydneygroves" target="_blank" class="hero-btn secondary" style="justify-content: center;">LinkedIn &#8599;</a>
+          </div>
+        </div>
+        <div class="hero-right-col">
+          <p class="hero-sub" style="font-size: 20px; width: 497px; height: 3px; margin: 0px 0px 40px">Hi, I’m Sydney, a junior at Virginia Tech pursuing dual degrees in Computer Engineering and Computational Neuroscience. My long-term goal is to work on brain-computer interfaces and to push the boundaries of what technology can do for the human brain. 
+
+
+Along the way I’ve gotten into embedded systems, assistive neurotechnology, RF sensing, neuromodulation, space systems, AI, and robotics. 
+<br>(The scenic route, if you will.)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="reveal" style="text-align: left; width: 815px; height: 475px; margin: 0px">
+    <p class="about-label" style="margin: 0px 0px 1px">About Me</p>
+    <h2 style="text-align: left">Built for the intersection of brains and machines.</h2>
+    <p style="font-size: 18px; margin: 0px 0px 16px 40px; text-align: left">I&rsquo;m pursuing dual degrees in Computer Engineering (Machine Learning concentration) and Neuroscience (Computational and Systems) at Virginia Tech. My passion is neural engineering, the software and hardware that let brains and machines communicate.</p>
+    <p style="font-size: 18px; margin: 0px 0px 16px 40px; text-align: left">I&rsquo;ve worked across undergraduate research labs, RF payload engineering for a NASA competition team, and build projects ranging from surgical haptic systems to gesture-controlled robotic arms.</p>
+    <p style="font-size: 18px; margin: 0px 0px 16px 40px; text-align: left">Outside of engineering: I’m an avid skier and outdoorsy person, a Lego enthusiast, and a Harry Potter devotee (still waiting on my letter to Hogwarts). I also wrote a children’s STEM book, available in Bucks County schools to motivate the next generation of girls into engineering.</p>
+  </div>
+
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <p class="section-label">Selected Projects</p>
+  <h2 class="reveal">Things I built,<br>broke, and fixed.</h2>
+  <div class="projects-grid">
+    <a class="project-card reveal" onclick="showProject('arm'); return false;" href="#">
+      <div class="project-card-img">
+        <img src="images/02-gesture-controlled-robotic-arm.jpg" alt="Gesture-controlled robotic arm" />
+      </div>
+      <div class="project-card-body">
+        <p class="project-card-meta">2025 &middot; Robotics &middot; Embedded Systems</p>
+        <h3 class="project-card-title">Gesture-Controlled Robotic Arm</h3>
+        <p class="project-card-desc">A six-axis 3D-printed robotic arm controlled by a wearable sensor glove, transmitting hand gestures over Bluetooth in real time.</p>
+        <span class="project-card-link">Read more</span>
+      </div>
+    </a>
+    <a class="project-card reveal" onclick="showProject('telescope'); return false;" href="#">
+      <div class="project-card-img"><img src="images/03-dobsonian-telescope-at-night.jpg" alt="Dobsonian telescope at night" /></div>
+      <div class="project-card-body">
+        <p class="project-card-meta">2022 &ndash; 2023 &middot; Astronomy</p>
+        <h3 class="project-card-title">Dobsonian Telescope</h3>
+        <p class="project-card-desc">Built a cost-effective Dobsonian reflector from scratch, tube sourced from a junkyard, and used it to measure the orbital period of Io to 98.88% accuracy against NASA&rsquo;s data.</p>
+        <span class="project-card-link">Read more</span>
+      </div>
+    </a>
+    <a class="project-card reveal" onclick="showProject('haptic'); return false;" href="#">
+      <div class="project-card-img">
+        <img src="images/04-haptic-feedback-wristband-system.jpg" alt="Haptic feedback wristband system" />
+      </div>
+      <div class="project-card-body">
+        <p class="project-card-meta">2025 &middot; Robotics &middot; Virginia Tech</p>
+        <h3 class="project-card-title">Haptic Feedback System for Robotic-Assisted Surgery</h3>
+        <p class="project-card-desc">A wearable vibrotactile band that translates force from surgical instruments like forceps into real-time feedback, helping surgeons and students feel pressure they'd otherwise lose. My first Arduino project.</p>
+        <span class="project-card-link">Read more</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section class="research-section" id="research">
+  <p class="section-label">RESEARCH + DESIGN TEAMS</p>
+  <h2 class="reveal">Where I spend<br>my time.</h2>
+  <div class="research-grid">
+    <div class="research-card reveal">
+      <span class="research-card-icon">&#129504;</span>
+      <div>
+        <h3 class="research-card-title">Legon Lab</h3>
+        <span class="research-card-meta">AUG 2025 – MAY 2026 · FRALIN BIOMEDICAL RESEARCH INSTITUTE</span>
+        <p class="research-card-desc" style="font-size: 16px">Undergraduate Researcher under Dr. Legon, investigating LIFU (low-intensity focused ultrasound) to measure neuromodulation in pain circuits. Responsible for EEG data collection, MRI analysis, LIFU preparation, and conducting participant trials.</p>
+      </div>
+    </div>
+    <div class="research-card reveal">
+      <span class="research-card-icon">&#128640;</span>
+      <div>
+        <h3 class="research-card-title">NASA Payload Sub-Team</h3>
+        <span class="research-card-meta">AUG 2025 – MAY 2026· NASA STUDENT LAUNCH AT VT</span>
+        <p class="research-card-desc" style="font-size: 16px">Payload Engineer on the design and testing of a LoRa RF payload for the 2025/2026 NASA Student Launch competition, focusing on system integration, structural integrity, and data acquisition. The team qualified and competed at NASA&rsquo;s Marshall Space Flight Center in Huntsville, Alabama (April 2026), with the rocket and payload successfully passing NASA&rsquo;s rigorous design review process.</p>
+        <div style="margin-top:1.25rem;border-radius:10px;overflow:hidden;line-height:0;">
+          <img src="images/05-sydney-with-nasa-rocket.jpg?v=2" alt="Sydney with NASA rocket" style="width:100%;height:auto;max-width:280px;display:block;border-radius:10px;" />
+        </div>
+      </div>
+    </div>
+    <div class="research-card reveal">
+      <span class="research-card-icon">&#129302;</span>
+      <div>
+        <h3 class="research-card-title">Assistive Robotics Lab</h3>
+        <span class="research-card-meta">JAN 2025 – DEC 2025 · VIRGINIA TECH</span>
+        <p class="research-card-desc" style="font-size: 16px">Designed a vibrotactile feedback system for robotic-assisted eye surgery using a load cell with HX711 amplifier to detect surgical tool force, and developed C++ software on an Arduino UNO to generate real-time vibrational cues.</p>
+      </div>
+  </div>
+  </div>
+</section>
+
+<!-- SIDEQUESTS -->
+<div class="sidequests-section">
+  <span class="sidequest-label">Side quests &#8599;</span>
+  <a href="https://www.amazon.com/-/es/Novas-STEM-Adventures-Sydney-Groves/dp/B0CNFWXS3Y" target="_blank" class="sidequest-card">
+    &#128216; <span style="font-size: 16px"><em>Nova&rsquo;s STEM Adventures</em>, a children&rsquo;s book, to motivate the next generation of women into engineering</span>
+  </a>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact" style="text-align: center; padding: 96px 104px; border-width: 1px 0px 0px 400px; margin: 0px 0px 0px 200px">
+  <p class="section-label">Get In Touch</p>
+  <h2>Let&rsquo;s talk engineering.</h2>
+  <p>Always open to conversations about anything at the intersection of tech and health. Feel free to reach out.</p>
+  <div class="contact-links">
+    <a href="mailto:Sydney@groveshome.com" class="contact-link" style="text-align: center"><span>&#9993;</span><span>Sydney@groveshome.com</span></a>
+    <a href="tel:2678328700" class="contact-link"><span>&#128222;</span><span>(267) 832-8700</span></a>
+    <a href="https://www.linkedin.com/in/sydneygroves" target="_blank" class="contact-link"><span>in</span><span>LinkedIn &#8599;</span></a>
+  </div>
+</section>
+
+<footer>
+  <span>&copy; 2026 Sydney Groves</span>
+  <span>Virginia Tech &middot; Computer Engineering &amp; Computational Neuroscience</span>
+</footer>
+</div>
+
+<!-- TELESCOPE DETAIL -->
+<div id="telescope-detail" class="telescope-detail">
+<button class="back-btn" onclick="showMain()">&#8592; Back to projects</button>
+<div class="project-hero">
+  <img src="images/06-dobsonian-telescope-at-night.jpg" alt="Dobsonian telescope at night" />
+  <div class="project-hero-overlay">
+    <p class="project-hero-meta">Sep 2022 &ndash; Mar 2023 &nbsp;&middot;&nbsp; High School Astronomy Research</p>
+    <h3>Dobsonian<br>Telescope,<br>From Scratch</h3>
+    <span class="project-hero-badge">1st Place &middot; Bucks County Science Research Competition</span>
+  </div>
+</div>
+<div class="project-body">
+  <div class="project-intro reveal">
+    <div>
+      <h4>Why build a telescope when you can just buy one?</h4>
+      <p>Because building one teaches you things no store-bought version ever could, like the exact moment a PVC sewer pipe sourced from a junkyard turns out not to be perfectly circular, and the whole optical path depends on it being circular.</p>
+      <p>This project started with a question: could a cost-effective Dobsonian reflector be built from scratch using repurposed materials, then used for real science with results worth comparing to NASA&rsquo;s data? The answer turned out to be yes: 98.88% accuracy to NASA&rsquo;s published orbital period of Io, one of Jupiter&rsquo;s moons.</p>
+      <p>A Dobsonian is a reflector telescope that bounces light off a large primary mirror at the bottom of the tube up to a small secondary mirror, which redirects it sideways into an eyepiece. The design is popular because it lets you build something large and powerful cheaply, which made it the right design to attempt at home, in high school, with junkyard parts.</p>
+    </div>
+    <div>
+      <div class="aside"><strong>The PVC problem.</strong> The main tube came from a junkyard, a large-diameter sewer pipe that wasn&rsquo;t quite circular. The fix involved precisely shimming the spider mount with washers, iterating on the alignment, and verifying collimation each time. Every adjustment had to be exact.</div>
+      <div class="aside"><strong>The science.</strong> Once built and collimated, the telescope was used to observe Io over multiple nights. Comparing the measured period to NASA&rsquo;s published value: 98.88% accuracy.</div>
+    </div>
+  </div>
+</div>
+<div class="parts-section">
+  <p class="parts-label">Build Log</p>
+  <h3 class="reveal">Every part, explained.</h3>
+  <div class="part-row reveal">
+    <div class="part-img" style="max-height:600px;"><img src="images/07-planning.jpg" alt="Planning" style="object-position: center bottom;" /></div>
+    <div class="part-text">
+      <div class="part-number">01</div><div class="part-title">The Kitchen Table Phase</div><div class="part-subtitle">Planning &amp; Calculations</div>
+      <p class="part-desc">Every build starts somewhere: a sheet of plywood, a TI-30X, a box cutter, a ruler, and ambitious notes. Before cutting anything, focal length, tube diameter, mirror size, and mounting geometry all had to be calculated.</p>
+    </div>
+  </div>
+  <div class="part-row flip reveal">
+    <div class="part-imgs-grid">
+      <img src="images/08-pvc-tube.jpg" alt="PVC tube" style="object-position:center;" />
+      <img src="images/09-first-assembly.jpg" alt="First assembly" style="object-position:center;" />
+    </div>
+    <div class="part-text">
+      <div class="part-number">02</div><div class="part-title">The Main Tube &amp; First Assembly</div><div class="part-subtitle">Primary Optical Tube / Junkyard PVC</div>
+      <p class="part-desc">The main tube holds the primary mirror at the bottom and the secondary mirror assembly at the top. This one came from a junkyard: a large-diameter PVC sewer pipe. The right photo shows first full assembly to verify the calculations held up.</p>
+      <div class="part-struggle">The PVC wasn&rsquo;t perfectly round. Precise shimming and careful iteration fixed it, but everything downstream depended on getting this exactly right.</div>
+    </div>
+  </div>
+  <div class="part-row reveal">
+    <div class="part-imgs-grid">
+      <img src="images/10-rocker-box.jpg" alt="Rocker box" style="object-position:center;" />
+      <img src="images/11-finished-telescope.jpg" alt="Finished telescope" style="object-position:center;" />
+    </div>
+    <div class="part-text">
+      <div class="part-number">03</div><div class="part-title">The Rocker Box &amp; Dobsonian Mount</div><div class="part-subtitle">Alt-Az Mount / Plywood Build</div>
+      <p class="part-desc">The rocker box lets the telescope tip up and down (altitude), while the circular ground board allows it to rotate left and right (azimuth). Left shows prototype; right shows the finished telescope at dusk, painted and ready.</p>
+    </div>
+  </div>
+  <div class="part-row flip reveal">
+    <div class="part-imgs-grid">
+      <img src="images/12-painted-tube.jpg" alt="Painted tube" style="object-position:center;" />
+      <img src="images/13-final-tube-with-focuser.jpg" alt="Final tube with focuser" style="object-position:center;" />
+    </div>
+    <div class="part-text">
+      <div class="part-number">04</div><div class="part-title">Painting &amp; Final Build</div><div class="part-subtitle">Light Baffle + Focuser + Finder Scope</div>
+      <p class="part-desc">The tube was spray-painted matte black inside and out. Stray light creates glare that washes out faint objects. The right shows the finished tube with the rack-and-pinion focuser and finder scope above it.</p>
+    </div>
+  </div>
+  <div class="part-row reveal">
+    <div class="part-imgs-grid">
+      <img src="images/14-focuser.jpg" alt="Focuser" style="object-position:center;" />
+      <img src="images/15-finder-scope.jpg" alt="Finder scope" style="object-position:center;" />
+    </div>
+    <div class="part-text">
+      <div class="part-number">05</div><div class="part-title">Focuser &amp; Finder Scope</div><div class="part-subtitle">SVBONY Rack &amp; Pinion &middot; Astromania 6&times;30</div>
+      <p class="part-desc">Left: the focuser slides the eyepiece in and out until the image sharpens. Had to be positioned so the eyepiece lands exactly at the primary mirror&rsquo;s focal plane. Right: the finder scope, a wide-field navigation aid for locating targets.</p>
+    </div>
+  </div>
+  <div class="part-row flip reveal">
+    <div class="part-img"><img src="images/16-spider.jpg" alt="Spider" /></div>
+    <div class="part-text">
+      <div class="part-number">06</div><div class="part-title">The Spider</div><div class="part-subtitle">Secondary Mirror Holder / Three-Vane Assembly</div>
+      <p class="part-desc">The spider is the three-vane metal assembly that holds the secondary mirror centered inside the tube. The secondary redirects the light cone rising from the primary mirror 90&deg; out through the focuser to the eyepiece.</p>
+      <div class="part-struggle">The non-circular tube caused the most trouble here. Shimming the primary mirror cell with washers to get the alignment right, then recollimating from scratch, was one of the more painstaking parts of the build.</div>
+    </div>
+  </div>
+  <div class="part-row reveal">
+    <div class="part-imgs-grid">
+      <img src="images/17-primary-mirror.jpg" alt="Primary mirror" style="object-position:center;" />
+      <img src="images/18-mirror-cell.jpg" alt="Mirror cell" style="object-position:center;" />
+    </div>
+    <div class="part-text">
+      <div class="part-number">07</div><div class="part-title">The Primary Mirror &amp; Cell</div><div class="part-subtitle">8&rdquo; Parabolic Mirror / Three-Point Support</div>
+      <p class="part-desc">The primary mirror is a precision-ground 8-inch parabolic reflector. The three thumb-screws are collimation adjusters. The right shows the mirror cell from behind: a plywood triangle with three spring-loaded clips so the mirror can flex with temperature changes without being stressed.</p>
+    </div>
+  </div>
+  <div class="part-row flip reveal">
+    <div class="part-img"><img src="images/19-looking-down-barrel.jpg" alt="Looking down barrel" /></div>
+    <div class="part-text">
+      <div class="part-number">08</div><div class="part-title">Looking Down the Barrel</div><div class="part-subtitle">The Collimation View</div>
+      <p class="part-desc">Looking straight down: the primary mirror at the bottom, framed by the tube&rsquo;s interior. When everything&rsquo;s aligned, the secondary mirror&rsquo;s reflection appears centered in the primary, and the eye appears centered in the secondary. Three concentric circles. Early sessions ran close to an hour; eventually it was under ten minutes.</p>
+    </div>
+  </div>
+</div>
+<div class="results-section">
+  <p class="section-label">Outcome</p>
+  <h3>98.88% accurate.<br>Award-winning.<br>Built from scratch.</h3>
+  <div class="results-grid">
+    <div class="result-card"><div class="result-num">98.88%</div><div class="result-label">Accuracy of measured orbital period of Io compared to NASA&rsquo;s published value</div></div>
+    <div class="result-card"><div class="result-num">1st</div><div class="result-label">Place, Bucks County Science Research Competition, 2023, plus Baruch S. Blumberg Award</div></div>
+    <div class="result-card"><div class="result-num">HM</div><div class="result-label">Honorable Mention, Regional Delaware Valley Science Fair, 2023</div></div>
+  </div>
+  <p>The 0.12% error likely reflects atmospheric seeing conditions and the precision limits of timing orbital transits by eye. For a telescope built at home from repurposed materials, that&rsquo;s a result to be proud of.</p>
+</div>
+<div style="padding:3rem 10vw;">
+  <button class="back-btn" style="padding:0;" onclick="showMain()">&#8592; Back to all projects</button>
+</div>
+
+</div>
+
+<!-- ARM DETAIL -->
+<div id="arm-detail" class="telescope-detail">
+<button class="back-btn" onclick="showMain()">&#8592; Back to projects</button>
+
+<div class="project-hero">
+  <img src="images/20-robotic-arm-and-glove-controller.jpg" alt="Robotic arm and glove controller" />
+  <div class="project-hero-overlay">
+    <p class="project-hero-meta">2025 &middot; Robotics &middot; Embedded Systems</p>
+    <h3>Gesture-Controlled<br>Robotic Arm</h3>
+    
+  </div>
+</div>
+
+<div class="project-body">
+  <div class="project-intro reveal">
+    <div>
+      <h4>A robotic arm that does what your hand does.</h4>
+      <p>This is a six-axis robotic arm system that follows hand gestures end-to-end: a 3D-printed arm with a wearable glove transmitter. Put on the glove, move your hand, and the arm mirrors it in real time over Bluetooth.</p>
+      <p>The arm covers gripper, wrist (two axes), elbow, shoulder pair, and base rotation. Every joint is independently controlled, with smooth trajectories and hardware protection limits built into the firmware. The whole thing runs on two separate power rails tied to a common ground to isolate the high-current stepper from the servo logic.</p>
+      <p>The hardest part wasn't any single component. It was getting everything to talk to each other reliably: flex sensors, dual IMUs, two Arduinos, a Bluetooth link, a PWM driver, and a stepper driver, all in the same pipeline without dropping commands or glitching a servo.</p>
+    </div>
+    <div>
+      <div class="aside"><strong>The glove.</strong> The gauntlet holds an Arduino Nano reading three flex sensors and dual MPU6050 IMUs. Finger curl maps to gripper position; wrist tilt maps to wrist joints; arm orientation maps to shoulder and elbow. Gestures are encoded into single-character commands (F/f, U/D, L/R) and sent over HC-05 Bluetooth to the arm.</div>
+      <div class="aside"><strong>The arm.</strong> An Arduino Uno receives commands and maps them to joint setpoints using incremental updates. A PCA9685 PWM board drives the MG996-class servos, while a NEMA-17 stepper on an A4988 driver handles base rotation for higher torque. Two battery packs: 6V NiMH for the servos, 11.1V LiPo for the stepper.</div>
+    </div>
+  </div>
+</div>
+
+<div class="parts-section">
+  <p class="parts-label">Build Log</p>
+  <h3 class="reveal">Every part, explained.</h3>
+
+  <div class="part-row reveal">
+    <div class="part-img"><img src="images/21-full-robotic-arm-assembled.jpg" alt="Full robotic arm assembled" /></div>
+    <div class="part-text">
+      <div class="part-number">01</div>
+      <div class="part-title">The Arm</div>
+      <div class="part-subtitle">3D-Printed / Six-Axis / NEMA-17 Base</div>
+      <p class="part-desc">Fully 3D-printed across six axes: gripper, two wrist joints, elbow, shoulder pair, and a rotating base. The base uses a NEMA-17 stepper rather than a servo for significantly more torque. MG996-class servos handle the upper joints, driven through a PCA9685 PWM board over I2C so the Arduino Uno isn't tied up generating PWM signals directly.</p>
+    </div>
+  </div>
+
+  <div class="part-row flip reveal">
+    <div class="part-img"><img src="images/22-shoulder-joint-gear-mechanism.jpg" alt="Shoulder joint gear mechanism" /></div>
+    <div class="part-text">
+      <div class="part-number">02</div>
+      <div class="part-title">The Gripper</div>
+      <div class="part-subtitle">MG996 Servo / Printed Gear Clamp</div>
+      <p class="part-desc">The gripper uses a printed gear clamp mechanism driven by an MG996-class servo. The two jaw pieces mesh against each other so both sides move symmetrically when the servo turns. Getting the gear mesh right took several iterations: too tight and the servo stalls under grip load; too loose and there's backlash in the clamp motion. Tuned by adjusting print tolerances until it closed cleanly without slipping.</p>
+    </div>
+  </div>
+
+  <div class="part-row reveal">
+    <div class="part-img"><img src="images/23-full-arm-with-electronics-wiring.jpg" alt="Full arm with electronics wiring" /></div>
+    <div class="part-text">
+      <div class="part-number">03</div>
+      <div class="part-title">Electronics & Power</div>
+      <div class="part-subtitle">Arduino Uno / PCA9685 / Dual Power Rails</div>
+      <p class="part-desc">Two power rails tied to a common ground: a 6V NiMH pack for the PCA9685 and servos, and a separate 11.1V LiPo for the NEMA-17 stepper via an A4988 driver. Isolating the stepper prevents its high current draw from spiking the servo supply. The Arduino Uno receives Bluetooth commands and maps them to joint setpoints, with per-channel firmware limits to protect both the hardware and the printed structure.</p>
+    </div>
+  </div>
+
+  <div class="part-row flip reveal">
+    <div class="part-img"><img src="images/24-wearable-sensor-glove.jpg" alt="Wearable sensor glove" /></div>
+    <div class="part-text">
+      <div class="part-number">04</div>
+      <div class="part-title">The Gauntlet</div>
+      <div class="part-subtitle">Arduino Nano / Flex Sensors / Dual MPU6050</div>
+      <p class="part-desc">Three flex sensors detect finger curl; two MPU6050 IMUs track wrist tilt and arm orientation. An Arduino Nano reads all five simultaneously and encodes the gesture into single-character commands: F/f for finger open/close, U/D for up/down, L/R for rotation. Compact by design, keeping the Bluetooth link fast and the arm-side parsing simple.</p>
+    </div>
+  </div>
+
+  <div class="part-row reveal">
+    <div class="part-img"><img src="images/25-arduino-nano-and-hc-05-bluetooth-module.jpg" alt="Arduino Nano and HC-05 Bluetooth module" /></div>
+    <div class="part-text">
+      <div class="part-number">05</div>
+      <div class="part-title">The Bluetooth Link</div>
+      <div class="part-subtitle">HC-05 Master/Slave / Serial Command Protocol</div>
+      <p class="part-desc">Paired HC-05 modules: master on the glove, slave on the arm. Once connected, the link behaves like a serial cable. One byte per command, no framing overhead. The Uno maps each character to a joint setpoint using incremental updates rather than absolute positions, so the arm moves smoothly even if commands arrive at variable intervals.</p>
+    </div>
+  </div>
+
+</div>
+
+<div style="padding:3rem 10vw;">
+  <button class="back-btn" style="padding:0;" onclick="showMain()">&#8592; Back to all projects</button>
+</div>
+</div>
+
+
+<!-- HAPTIC DETAIL -->
+<div id="haptic-detail" class="telescope-detail">
+<button class="back-btn" onclick="showMain()">&#8592; Back to projects</button>
+
+<div class="project-hero">
+  <img src="images/26-haptic-feedback-system-on-wrist.jpg" alt="Haptic feedback system on wrist" />
+  <div class="project-hero-overlay">
+    <p class="project-hero-meta">2025 &middot; Virginia Tech</p>
+    <h3>Haptic Feedback<br>for Robotic Surgery</h3>
+  </div>
+</div>
+
+<div class="project-body">
+  <div class="project-intro reveal">
+    <div>
+      <h4>The idea: give surgeons back their sense of touch.</h4>
+      <p>When performing delicate procedures like eye surgery, surgeons and students using forceps or other instruments lose a lot of tactile feedback. This project is an early-stage attempt to give some of that back, translating force data from the instrument into vibrational cues felt through the forearm in real time.</p>
+      <p>A load cell sensor detects force applied at the instrument. That signal runs through an HX711 amplifier to an Arduino UNO, which maps the force reading to a vibration intensity and drives a vibrotactile motor embedded in a forearm-mounted band. Press harder on the forceps, feel more vibration through the wrist.</p>
+      <p>This was also my first Arduino project. It's unfinished, genuinely pretty simple, and I'm including it because every project has a starting point. The haptic feedback work I did later in the Assistive Robotics Lab at Virginia Tech grew directly out of this.</p>
+    </div>
+    <div>
+      <div class="aside"><strong>Status: unfinished.</strong> The core loop works (force in, vibration out) but the system isn't miniaturized, isn't wireless, and hasn't been tested in a surgical context. It's a proof of concept and a learning exercise, not a finished device.</div>
+      <div class="aside"><strong>Why it matters.</strong> Vibrational intensity scaling with applied force is a simple idea, but getting it to feel intuitive is harder than it sounds. Threshold calibration, motor response curves, and latency all affect whether the feedback actually helps or just adds noise.</div>
+    </div>
+  </div>
+</div>
+
+<div class="parts-section">
+  <p class="parts-label">Build Log</p>
+  <h3 class="reveal">The components.</h3>
+
+  <div class="part-row reveal">
+    <div class="part-img"><img src="images/27-full-system-laid-out.jpg" alt="Full system laid out" /></div>
+    <div class="part-text">
+      <div class="part-number">01</div>
+      <div class="part-title">The Full System</div>
+      <div class="part-subtitle">Load Cell / HX711 / Arduino UNO / Vibrotactile Band</div>
+      <p class="part-desc">The full system laid out: load cell and housing (left), Arduino UNO on breadboard (center), and the forearm band with embedded vibrotactile motor (top right)..</p>
+    </div>
+  </div>
+
+  <div class="part-row flip reveal">
+    <div class="part-img"><img src="images/28-band-worn-on-wrist-during-testing.jpg" alt="Band worn on wrist during testing" /></div>
+    <div class="part-text">
+      <div class="part-number">02</div>
+      <div class="part-title">The Wristband in Use</div>
+      <div class="part-subtitle">Vibrotactile Motor / Forearm Mount</div>
+      <p class="part-desc">The band worn on the forearm during a test session. The vibrotactile motor sits against the skin and buzzes in proportion to the force reading from the load cell. The idea is that a surgeon, doctor, or student could wear this while using forceps and feel, through the band, how much pressure they're actually applying — useful for precision tasks and for training people who are still developing their technique.</p>
+    </div>
+  </div>
+
+  <div class="part-row reveal">
+    <div class="part-imgs-grid">
+      <img src="images/29-wiring-the-hx711-connector.jpg" alt="Wiring the HX711 connector" style="object-position:center;" />
+      <img src="images/30-arduino-uno-and-breadboard.jpg" alt="Arduino UNO and breadboard" style="object-position:center;" />
+    </div>
+    <div class="part-text">
+      <div class="part-number">03</div>
+      <div class="part-title">Electronics</div>
+      <div class="part-subtitle">HX711 Amplifier / Arduino UNO / Breadboard</div>
+      <p class="part-desc">Left: wiring the HX711 load cell amplifier connector. The HX711 takes the tiny analog signal from the load cell and amplifies it to a range the Arduino can read digitally. Right: the Arduino UNO on breadboard with the battery pack for portable testing. The UNO reads the amplified force value and maps it to a PWM output that drives the vibration motor.</p>
+      <p class="part-desc">This was my first time using an Arduino, and most of the learning happened here: understanding pull-up resistors, reading datasheets, getting the HX711 library talking to the sensor, and figuring out why the motor wouldn't run until the ground was properly shared.</p>
+    </div>
+  </div>
+
+</div>
+
+<div style="padding:3rem 10vw;">
+  <button class="back-btn" style="padding:0;" onclick="showMain()">&#8592; Back to all projects</button>
+</div>
+</div>
+
+<script>
+  function showProject(name) {
+    document.getElementById('main-page').style.display = 'none';
+    document.getElementById(name + '-detail').classList.add('active');
+    window.scrollTo(0, 0);
+    setTimeout(() => { document.querySelectorAll('#' + name + '-detail .reveal').forEach(el => observer.observe(el)); }, 100);
+  }
+  function showMain() {
+    document.getElementById('main-page').style.display = 'block';
+    document.querySelectorAll('.telescope-detail, #arm-detail, #haptic-detail').forEach(d => d.classList.remove('active'));
+    window.scrollTo(0, 0);
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
+<style id="__om-edit-overrides">
+.hero-left-col >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >div { font-family: "Playfair Display" !important }
+.hero-left-col >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >div { font-family: Nunito !important }
+.hero-left-col >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >div { font-size: 26px !important }
+</style>
