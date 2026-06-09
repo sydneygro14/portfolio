@@ -15,6 +15,7 @@
     --muted: #7a7068;
     --cream: #ede9df;
     --gold: #d4b8f0;
+    --page-max: 1120px;
   }
   html { scroll-behavior: smooth; }
   body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); overflow-x: hidden; }
@@ -68,8 +69,9 @@
 
   /* Profile card */
   .hero-card {
-    padding: 1rem 10vw 4rem;
-    max-width: 100%;
+    width: min(var(--page-max), calc(100% - 14vw));
+    margin: 0 auto;
+    padding: 3rem 0 4rem;
     opacity: 0; animation: fadeUp 0.9s 0.3s forwards;
   }
   .hero-avatar-banner {
@@ -91,8 +93,8 @@
     letter-spacing: 0.05em;
   }
   .hero-sub {
-    font-size: 1.05rem; color: var(--muted); line-height: 1.8;
-    margin-bottom: 1.75rem; max-width: 100%;
+    font-size: clamp(1rem, 1.4vw, 1.25rem); color: var(--muted); line-height: 1.8;
+    margin-bottom: 1.75rem; max-width: 58ch;
   }
 
   .hero-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.5rem; }
@@ -111,13 +113,11 @@
 
   /* ABOUT */
   .about {
-    padding: 6rem 10vw; border-top: 1px solid rgba(0,0,0,0.08);
-    max-width: 100%;
-    width: 100%;
+    padding: 6rem max(7vw, calc((100vw - var(--page-max)) / 2)); border-top: 1px solid rgba(0,0,0,0.08);
   }
   .about-label { font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 1.5rem; }
   .about h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3vw, 3rem); line-height: 1.2; margin-bottom: 1.5rem; }
-  .about p { color: var(--muted); line-height: 1.8; font-size: clamp(1rem, 1.3vw, 1.15rem); margin-bottom: 1rem; max-width: 700px; }
+  .about p { color: var(--muted); line-height: 1.8; font-size: clamp(1rem, 1.3vw, 1.15rem); margin-bottom: 1rem; max-width: 760px; }
   .about p a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
   .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .stat { padding: 1.5rem; background: var(--cream); border-radius: 8px; }
@@ -142,6 +142,15 @@
   .project-card-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
   .project-card-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1rem; font-size: 0.8rem; font-weight: 500; color: var(--accent); text-decoration: none; }
   .project-card-link::after { content: ' →'; }
+  .subprojects-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+  .subproject-card { display: flex; flex-direction: row; overflow: hidden; background: var(--cream); border-radius: 12px; color: var(--ink); text-decoration: none; }
+  .subproject-card-img { width: 240px; min-width: 240px; min-height: 190px; overflow: hidden; }
+  .subproject-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .subproject-card-body { padding: 1.5rem 2rem; display: flex; flex-direction: column; justify-content: center; }
+  .screen-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+  .screen-card { background: var(--cream); border-radius: 10px; overflow: hidden; }
+  .screen-card img { width: 100%; height: 260px; object-fit: contain; display: block; background: #f5f2eb; }
+  .screen-caption { padding: 1rem 1.25rem 1.2rem; }
 
   /* TELESCOPE DETAIL */
   .telescope-detail { display: none; padding-top: 5rem; position: relative; z-index: 1; }
@@ -210,7 +219,13 @@
   .sidequest-card:hover { background: var(--ink); color: white; }
 
   /* CONTACT */
-  .contact { padding: 6rem 10vw; border-top: 1px solid rgba(0,0,0,0.08); max-width: 600px; }
+  .contact {
+    width: min(640px, calc(100% - 14vw));
+    margin: 0 auto;
+    padding: 6rem 0;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    text-align: center;
+  }
   .contact .section-label { font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 1rem; }
   .contact h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 1.5rem; line-height: 1.2; }
   .contact p { color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
@@ -227,14 +242,32 @@
 
   .hero-two-col {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(240px, 0.75fr) minmax(0, 1fr);
     gap: 4rem;
     align-items: start;
   }
   .hero-left-col { display: flex; flex-direction: column; }
   .hero-right-col { padding-top: 0.5rem; }
-  @media (max-width: 768px) {
-    .hero-two-col { grid-template-columns: 1fr; gap: 1.5rem; }
+  .hero-statement {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(1.75rem, 2.4vw, 2rem);
+    margin: 0;
+  }
+  .hero-statement em {
+    display: block;
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 600;
+    margin-top: 0.6rem;
+  }
+  .about-content {
+    max-width: 860px;
+  }
+  .about-content p {
+    margin-left: clamp(0rem, 3vw, 2.5rem);
+  }
+  @media (max-width: 900px) {
+    .hero-two-col { grid-template-columns: 1fr; gap: 2rem; }
   }
 
   /* ---------- RESPONSIVE + REQUESTED TWEAKS ---------- */
@@ -258,12 +291,19 @@
     .hero-banner { height: 48vh; min-height: 300px; }
     .hero-banner-content { padding: 2rem 7vw; }
     .hero-avatar-banner { width: 84px; height: 84px; top: 4.6rem; right: 7vw; border-width: 3px; }
-    .hero-card { padding: 1rem 7vw 3rem; }
+    .hero-card { width: 86vw; padding: 2.5rem 0 3rem; }
     .hero-two-col { gap: 1.25rem; }
-    .about, .projects-section, .research-section, .contact, .results-section { padding-left: 7vw; padding-right: 7vw; }
+    .about, .projects-section, .research-section, .results-section { padding-left: 7vw; padding-right: 7vw; }
+    .contact { width: 86vw; padding: 4rem 0; }
+    .about-content p { margin-left: 0; }
     .project-card { flex-direction: column; max-width: 100%; }
     .project-card-img { width: 100%; min-width: 0; min-height: 0; height: 190px; }
     .project-card-body { padding: 1.25rem 1.5rem; }
+    .subproject-card { flex-direction: column; }
+    .subproject-card-img { width: 100%; min-width: 0; min-height: 0; height: 210px; }
+    .subproject-card-body { padding: 1.25rem 1.5rem; }
+    .screen-grid { grid-template-columns: 1fr; }
+    .screen-card img { height: 240px; }
     .project-body, .parts-section, .sidequests-section { padding-left: 7vw; padding-right: 7vw; }
     .sidequests-section { gap: 1rem; }
     .part-imgs-grid { grid-template-columns: 1fr; max-height: none; }
@@ -307,23 +347,18 @@
       <img src="images/01-sydney-groves.jpg" alt="Sydney Groves" class="hero-avatar" />
     </div>
   </div>
-  <div class="hero-card" style="font-size: 20px; font-family: Nunito">
+  <div class="hero-card">
     <div class="hero-right">
       <div class="hero-two-col">
         <div class="hero-left-col">
-          <p class="hero-eyebrow" style="font-family: Nunito; font-size: 30px; margin: 40px 0px 8px">50% engineer.<br>50% scientist.<br><em style="font-family: Nunito; font-style: italic; font-weight: 600; color: var(--accent); font-size: 35px; letter-spacing: 0.05em; margin-bottom: 2rem; display: block; height: 70px; margin: 10px 0px 32px; width: 288px">100% 
-committed.</em></p>
+          <p class="hero-eyebrow hero-statement">50% engineer.<br>50% scientist.<br><em>100% committed.</em></p>
           <div class="hero-links">
             <a href="mailto:Sydney@groveshome.com" class="hero-btn primary" style="justify-content: center;">&#9993; Get in touch</a>
             <a href="https://www.linkedin.com/in/sydneygroves" target="_blank" class="hero-btn secondary" style="justify-content: center;">LinkedIn &#8599;</a>
           </div>
         </div>
         <div class="hero-right-col">
-          <p class="hero-sub" style="font-size: 20px; width: 497px; height: 3px; margin: 0px 0px 40px">Hi, I’m Sydney, a junior at Virginia Tech pursuing dual degrees in Computer Engineering and Computational Neuroscience. My long-term goal is to work on brain-computer interfaces and to push the boundaries of what technology can do for the human brain. 
-
-
-Along the way I’ve gotten into embedded systems, assistive neurotechnology, RF sensing, neuromodulation, space systems, AI, and robotics. 
-<br>(The scenic route, if you will.)</p>
+          <p class="hero-sub">Hi, I’m Sydney, a junior at Virginia Tech pursuing dual degrees in Computer Engineering and Computational Neuroscience. My long-term goal is to work on brain-computer interfaces and to push the boundaries of what technology can do for the human brain.<br><br>Along the way I’ve gotten into embedded systems, assistive neurotechnology, RF sensing, neuromodulation, space systems, AI, and robotics. (The scenic route, if you will.)</p>
         </div>
       </div>
     </div>
@@ -332,12 +367,12 @@ Along the way I’ve gotten into embedded systems, assistive neurotechnology, RF
 
 <!-- ABOUT -->
 <section class="about" id="about">
-  <div class="reveal" style="text-align: left; width: 815px; height: 475px; margin: 0px">
-    <p class="about-label" style="margin: 0px 0px 1px">About Me</p>
-    <h2 style="text-align: left">Built for the intersection of brains and machines.</h2>
-    <p style="font-size: 18px; margin: 0px 0px 16px 40px; text-align: left">I&rsquo;m pursuing dual degrees in Computer Engineering (Machine Learning concentration) and Neuroscience (Computational and Systems) at Virginia Tech. My passion is neural engineering, the software and hardware that let brains and machines communicate.</p>
-    <p style="font-size: 18px; margin: 0px 0px 16px 40px; text-align: left">I&rsquo;ve worked across undergraduate research labs, RF payload engineering for a NASA competition team, and build projects ranging from surgical haptic systems to gesture-controlled robotic arms.</p>
-    <p style="font-size: 18px; margin: 0px 0px 16px 40px; text-align: left">Outside of engineering: I’m an avid skier and outdoorsy person, a Lego enthusiast, and a Harry Potter devotee (still waiting on my letter to Hogwarts). I also wrote a children’s STEM book, available in Bucks County schools to motivate the next generation of girls into engineering.</p>
+  <div class="reveal about-content">
+    <p class="about-label">About Me</p>
+    <h2>Built for the intersection of brains and machines.</h2>
+    <p>I&rsquo;m pursuing dual degrees in Computer Engineering (Machine Learning concentration) and Neuroscience (Computational and Systems) at Virginia Tech. My passion is neural engineering, the software and hardware that let brains and machines communicate.</p>
+    <p>I&rsquo;ve worked across undergraduate research labs, RF payload engineering for a NASA competition team, and build projects ranging from surgical haptic systems to gesture-controlled robotic arms.</p>
+    <p>Outside of engineering: I’m an avid skier and outdoorsy person, a Lego enthusiast, and the author of a children’s STEM book available in Bucks County schools to motivate the next generation of girls into engineering.</p>
   </div>
 
 </section>
@@ -347,6 +382,17 @@ Along the way I’ve gotten into embedded systems, assistive neurotechnology, RF
   <p class="section-label">Selected Projects</p>
   <h2 class="reveal">Things I built,<br>broke, and fixed.</h2>
   <div class="projects-grid">
+    <a class="project-card reveal" onclick="showProject('msp'); return false;" href="#">
+      <div class="project-card-img">
+        <img src="images/msp-launchpad-boosterpack.jpg" alt="MSP432 LaunchPad and BoosterPack project screens" />
+      </div>
+      <div class="project-card-body">
+        <p class="project-card-meta">2026 &middot; Embedded Systems &middot; MSP432</p>
+        <h3 class="project-card-title">MSP432 LaunchPad + BoosterPack Projects</h3>
+        <p class="project-card-desc">A sequence of embedded systems builds on the MSP432 LaunchPad and BoosterPack, from a full Minesweeper game to interrupt-driven peripherals, PWM color mixing, UART, timers, and joystick input.</p>
+        <span class="project-card-link">Read more</span>
+      </div>
+    </a>
     <a class="project-card reveal" onclick="showProject('arm'); return false;" href="#">
       <div class="project-card-img">
         <img src="images/02-gesture-controlled-robotic-arm.jpg" alt="Gesture-controlled robotic arm" />
@@ -358,15 +404,6 @@ Along the way I’ve gotten into embedded systems, assistive neurotechnology, RF
         <span class="project-card-link">Read more</span>
       </div>
     </a>
-    <a class="project-card reveal" onclick="showProject('telescope'); return false;" href="#">
-      <div class="project-card-img"><img src="images/03-dobsonian-telescope-at-night.jpg" alt="Dobsonian telescope at night" /></div>
-      <div class="project-card-body">
-        <p class="project-card-meta">2022 &ndash; 2023 &middot; Astronomy</p>
-        <h3 class="project-card-title">Dobsonian Telescope</h3>
-        <p class="project-card-desc">Built a cost-effective Dobsonian reflector from scratch, tube sourced from a junkyard, and used it to measure the orbital period of Io to 98.88% accuracy against NASA&rsquo;s data.</p>
-        <span class="project-card-link">Read more</span>
-      </div>
-    </a>
     <a class="project-card reveal" onclick="showProject('haptic'); return false;" href="#">
       <div class="project-card-img">
         <img src="images/04-haptic-feedback-wristband-system.jpg" alt="Haptic feedback wristband system" />
@@ -375,6 +412,15 @@ Along the way I’ve gotten into embedded systems, assistive neurotechnology, RF
         <p class="project-card-meta">2025 &middot; Robotics &middot; Virginia Tech</p>
         <h3 class="project-card-title">Haptic Feedback System for Robotic-Assisted Surgery</h3>
         <p class="project-card-desc">A wearable vibrotactile band that translates force from surgical instruments like forceps into real-time feedback, helping surgeons and students feel pressure they'd otherwise lose. My first Arduino project.</p>
+        <span class="project-card-link">Read more</span>
+      </div>
+    </a>
+    <a class="project-card reveal" onclick="showProject('telescope'); return false;" href="#">
+      <div class="project-card-img"><img src="images/03-dobsonian-telescope-at-night.jpg" alt="Dobsonian telescope at night" /></div>
+      <div class="project-card-body">
+        <p class="project-card-meta">2022 &ndash; 2023 &middot; Astronomy</p>
+        <h3 class="project-card-title">Dobsonian Telescope</h3>
+        <p class="project-card-desc">Built a cost-effective Dobsonian reflector from scratch, tube sourced from a junkyard, and used it to measure the orbital period of Io to 98.88% accuracy against NASA&rsquo;s data.</p>
         <span class="project-card-link">Read more</span>
       </div>
     </a>
@@ -399,7 +445,7 @@ Along the way I’ve gotten into embedded systems, assistive neurotechnology, RF
       <div>
         <h3 class="research-card-title">NASA Payload Sub-Team</h3>
         <span class="research-card-meta">AUG 2025 – MAY 2026· NASA STUDENT LAUNCH AT VT</span>
-        <p class="research-card-desc" style="font-size: 16px">Payload Engineer on the design and testing of a LoRa RF payload for the 2025/2026 NASA Student Launch competition, focusing on system integration, structural integrity, and data acquisition. The team qualified and competed at NASA&rsquo;s Marshall Space Flight Center in Huntsville, Alabama (April 2026), with the rocket and payload successfully passing NASA&rsquo;s rigorous design review process.</p>
+        <p class="research-card-desc" style="font-size: 16px">Payload Engineer on the design and testing of a LoRa RF payload for the 2025/2026 NASA Student Launch competition, focusing on system integration, structural integrity, and data acquisition. The team qualified and competed at NASA&rsquo;s Marshall Space Flight Center in Huntsville, Alabama (April 2026), placing 7th in the competition, with the rocket and payload successfully passing NASA&rsquo;s rigorous design review process.</p>
         <div style="margin-top:1.25rem;border-radius:10px;overflow:hidden;line-height:0;">
           <img src="images/05-sydney-with-nasa-rocket.jpg?v=2" alt="Sydney with NASA rocket" style="width:100%;height:auto;max-width:280px;display:block;border-radius:10px;" />
         </div>
@@ -425,7 +471,7 @@ Along the way I’ve gotten into embedded systems, assistive neurotechnology, RF
 </div>
 
 <!-- CONTACT -->
-<section class="contact" id="contact" style="text-align: center; padding: 96px 104px; border-width: 1px 0px 0px 400px; margin: 0px 0px 0px 200px">
+<section class="contact" id="contact">
   <p class="section-label">Get In Touch</p>
   <h2>Let&rsquo;s talk engineering.</h2>
   <p>Always open to conversations about anything at the intersection of tech and health. Feel free to reach out.</p>
@@ -650,6 +696,205 @@ Along the way I’ve gotten into embedded systems, assistive neurotechnology, RF
 </div>
 
 
+<!-- MSP DETAIL -->
+<div id="msp-detail" class="telescope-detail">
+<button class="back-btn" onclick="showMain()">&#8592; Back to projects</button>
+
+<div class="project-hero">
+  <img src="images/msp-launchpad-boosterpack.jpg" alt="MSP432 LaunchPad and BoosterPack project screens" />
+  <div class="project-hero-overlay">
+    <p class="project-hero-meta">2026 &middot; ECE 2564 &middot; Embedded Systems</p>
+    <h3>MSP432 LaunchPad<br>+ BoosterPack</h3>
+  </div>
+</div>
+
+<div class="project-body">
+  <div class="project-intro reveal">
+    <div>
+      <h4>A semester of making tiny hardware do very specific things.</h4>
+      <p>This sequence was completed for my Embedded Systems class using the MSP432 LaunchPad and BoosterPack. The projects covered LCD graphics, UART, GPIO buttons, LEDs, timers, joystick input, ADC, PWM, interrupts, and low-level hardware control.</p>
+      <p>The through-line was learning how to structure embedded applications as finite state machines, keep the main loop responsive, and move hardware-specific work into a HAL so the application code stayed readable.</p>
+    </div>
+    <div>
+      <div class="aside"><strong>The hardware.</strong> MSP432 LaunchPad, Educational BoosterPack, Crystalfontz 128x128 LCD, joystick, pushbuttons, RGB LEDs, UART over USB, ADC14, Timer32, TimerA PWM, and DriverLib.</div>
+      <div class="aside"><strong>The pattern.</strong> Each build separated application state from hardware access, used named constants instead of magic numbers, and kept the UI responsive through non-blocking code or interrupt-driven peripherals.</div>
+    </div>
+  </div>
+</div>
+
+<div class="parts-section">
+  <p class="parts-label">Class Projects</p>
+  <h3 class="reveal">The subprojects.</h3>
+  <div class="subprojects-grid">
+    <a class="subproject-card reveal" onclick="showProject('msp-minesweeper'); return false;" href="#">
+      <div class="subproject-card-img">
+        <img src="images/msp-minesweeper.jpg" alt="Minesweeper running on the MSP432 BoosterPack LCD" />
+      </div>
+      <div class="subproject-card-body">
+        <p class="project-card-meta">Project 1 &middot; FSM &middot; UART</p>
+        <h3 class="project-card-title">Minesweeper on the BoosterPack LCD</h3>
+        <p class="project-card-desc">A full Minesweeper game on the MSP432 with title, menu, instructions, setup, game, and results screens. The board runs through UART input with adjustable mine count and grid size, flood-fill reveal logic, flag mode, win/loss states, and baud-rate switching tied to the RGB LED.</p>
+        <span class="project-card-link">Read more</span>
+      </div>
+    </a>
+    <a class="subproject-card reveal" onclick="showProject('msp-interrupts'); return false;" href="#">
+      <div class="subproject-card-img">
+        <img src="images/msp-interrupts.jpg" alt="Color mixer screen running on the MSP432 BoosterPack LCD" />
+      </div>
+      <div class="subproject-card-body">
+        <p class="project-card-meta">Project 3 &middot; Interrupts &middot; PWM</p>
+        <h3 class="project-card-title">Interrupt-Driven Hardware Tasks</h3>
+        <p class="project-card-desc">An interrupt-driven embedded app with GPIO button interrupts, Timer32, UART receive, ADC joystick sampling, low-power mode, and a PWM color mixer. JSB selects the red, green, or blue channel, BB1 and BB2 adjust the value, and the BoosterPack LED updates in real time.</p>
+        <span class="project-card-link">Read more</span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div style="padding:3rem 10vw;">
+  <button class="back-btn" style="padding:0;" onclick="showMain()">&#8592; Back to all projects</button>
+</div>
+</div>
+
+
+<!-- MSP MINESWEEPER DETAIL -->
+<div id="msp-minesweeper-detail" class="telescope-detail">
+<button class="back-btn" onclick="showProject('msp')">&#8592; Back to MSP projects</button>
+
+<div class="project-hero">
+  <img src="images/msp-minesweeper-midplay.jpg" alt="Minesweeper running on the MSP432 BoosterPack LCD" />
+  <div class="project-hero-overlay">
+    <p class="project-hero-meta">Project 1 &middot; FSM &middot; UART &middot; MSP432</p>
+    <h3>Minesweeper<br>on the BoosterPack</h3>
+    <span class="project-hero-badge">LCD Game &middot; Adjustable Board &middot; Non-blocking</span>
+  </div>
+</div>
+
+<div class="project-body">
+  <div class="project-intro reveal">
+    <div>
+      <h4>Minesweeper, but make it fit on a 128x128 screen.</h4>
+      <p>This project turned the MSP432 and BoosterPack into a full Minesweeper game, complete with title, menu, instructions, setup, game, and results screens. The LCD shows the board, the terminal handles coordinate input, and the whole thing runs as a finite state machine with separate screen handlers.</p>
+      <p>Before each game, the player chooses the number of mines, rows, and columns over UART. The game supports selecting cells, flagging mines, revealing blank regions with recursive flood fill, switching baud rates with BB1, and showing the active baud rate through the BoosterPack RGB LED.</p>
+      <p><a class="project-card-link" href="https://github.com/sydneygro14/project1.git" target="_blank">View code</a></p>
+    </div>
+    <div>
+      <div class="aside"><strong>The game loop.</strong> The app moves through title, menu, instructions, setup, game, and results screens, with each screen getting its own draw and handler functions.</div>
+      <div class="aside"><strong>The embedded part.</strong> UART input drives the board, BB1 cycles baud rate between 9600, 19200, 38400, and 57600 bps, and the RGB LED shows the active rate in real time.</div>
+    </div>
+  </div>
+</div>
+
+<div class="parts-section">
+  <p class="parts-label">Screen States</p>
+  <h3 class="reveal">What it looked like on hardware.</h3>
+  <div class="screen-grid">
+    <div class="screen-card reveal">
+      <img src="images/msp-minesweeper-title.jpg" alt="Minesweeper title screen" />
+      <div class="screen-caption"><div class="part-title">Title Screen</div><div class="part-subtitle">Startup / Any key to continue</div><p class="part-desc">The first screen introduces the game and hands control to the menu after the player presses a key.</p></div>
+    </div>
+    <div class="screen-card reveal">
+      <img src="images/msp-minesweeper-menu.jpg" alt="Minesweeper menu screen" />
+      <div class="screen-caption"><div class="part-title">Menu Screen</div><div class="part-subtitle">Play / Instructions</div><p class="part-desc">The player navigates with UART keys, choosing between starting a new game or reading the instructions.</p></div>
+    </div>
+    <div class="screen-card reveal">
+      <img src="images/msp-minesweeper-instructions.jpg" alt="Minesweeper instructions screen" />
+      <div class="screen-caption"><div class="part-title">Instructions</div><div class="part-subtitle">Coordinates / Flag Mode</div><p class="part-desc">The LCD gives the short version: enter coordinates, toggle flag mode, and try not to select a mine.</p></div>
+    </div>
+    <div class="screen-card reveal">
+      <img src="images/msp-minesweeper-terminal.jpg" alt="Minesweeper terminal instructions" />
+      <div class="screen-caption"><div class="part-title">UART View</div><div class="part-subtitle">MobaXterm / Text Prompts</div><p class="part-desc">The terminal handles setup prompts and typed moves, which made the small screen feel a little less small.</p></div>
+    </div>
+    <div class="screen-card reveal">
+      <img src="images/msp-minesweeper-midplay.jpg" alt="Minesweeper mid-play board" />
+      <div class="screen-caption"><div class="part-title">Mid-Play</div><div class="part-subtitle">Flood Fill / Numbers / Flags</div><p class="part-desc">Hidden cells, revealed numbers, flags, and recursive blank-cell reveal all update on the LCD during play.</p></div>
+    </div>
+    <div class="screen-card reveal">
+      <img src="images/msp-minesweeper-win.jpg" alt="Minesweeper win screen" />
+      <div class="screen-caption"><div class="part-title">Win Screen</div><div class="part-subtitle">All mines flagged</div><p class="part-desc">Flagging every mine correctly triggers the win condition and returns the player to the main flow.</p></div>
+    </div>
+    <div class="screen-card reveal">
+      <img src="images/msp-minesweeper-lose.jpg" alt="Minesweeper lose screen" />
+      <div class="screen-caption"><div class="part-title">Lose Screen</div><div class="part-subtitle">Mine selected</div><p class="part-desc">Selecting a mine ends the game, because Minesweeper remains emotionally direct even on a microcontroller.</p></div>
+    </div>
+    <div class="screen-card reveal">
+      <img src="images/msp-minesweeper-reveal.jpg" alt="Minesweeper mine reveal screen" />
+      <div class="screen-caption"><div class="part-title">Mine Reveal</div><div class="part-subtitle">Temporary board reveal</div><p class="part-desc">After a loss, the board briefly reveals the mine positions so the player can see exactly what happened.</p></div>
+    </div>
+  </div>
+</div>
+
+<div style="padding:3rem 10vw;">
+  <button class="back-btn" style="padding:0;" onclick="showProject('msp')">&#8592; Back to MSP projects</button>
+</div>
+</div>
+
+
+<!-- MSP INTERRUPTS DETAIL -->
+<div id="msp-interrupts-detail" class="telescope-detail">
+<button class="back-btn" onclick="showProject('msp')">&#8592; Back to MSP projects</button>
+
+<div class="project-hero">
+  <img src="images/msp-interrupts-color.jpg" alt="PWM color mixer running on the MSP432 BoosterPack" />
+  <div class="project-hero-overlay">
+    <p class="project-hero-meta">Project 3 &middot; Interrupts &middot; ADC &middot; PWM</p>
+    <h3>Interrupt-Driven<br>Hardware Tasks</h3>
+    <span class="project-hero-badge">GPIO &middot; Timer32 &middot; UART &middot; Joystick &middot; Color Mixer</span>
+  </div>
+</div>
+
+<div class="project-body">
+  <div class="project-intro reveal">
+    <div>
+      <h4>One board, five screens, many ways to wake the processor up.</h4>
+      <p>This project was built around interrupts: GPIO button presses, Timer32, UART receive, ADC joystick sampling, and PWM color mixing. The application cycles through a main menu and five task screens, each one demonstrating a different peripheral behavior on the MSP432 and BoosterPack.</p>
+      <p>The hardest task was the Color Mixer. TimerA PWM drives the red, green, and blue LED channels independently through port mapping. JSB cycles the selected color, BB1 increases the value, BB2 decreases it, and the BoosterPack LED updates immediately.</p>
+      <p><a class="project-card-link" href="https://github.com/VT-ECE-2564-assignments/sp26-proj3-sydneygro14.git" target="_blank">View code</a></p>
+    </div>
+    <div>
+      <div class="aside"><strong>The interrupt stack.</strong> GPIO interrupts handled buttons, ADC14 continuously sampled the joystick axes, UART receive woke the processor from LPM0, and Timer32 used a custom ISR registered through the interrupt vector table.</div>
+      <div class="aside"><strong>The power story.</strong> Low-power mode was implemented across the app, with the green LaunchPad LED showing when the processor entered and exited LPM0.</div>
+    </div>
+  </div>
+</div>
+
+<div class="parts-section">
+  <p class="parts-label">Screen States</p>
+  <h3 class="reveal">The tasks on the LCD.</h3>
+  <div class="screen-grid">
+    <div class="screen-card reveal">
+      <img src="images/msp-interrupts-menu.jpg" alt="Interrupt project main menu" />
+      <div class="screen-caption"><div class="part-title">Main Menu</div><div class="part-subtitle">LB2 cycles tasks</div><p class="part-desc">The menu routes through the task screens, keeping the project organized as a finite state machine.</p></div>
+    </div>
+    <div class="screen-card reveal">
+      <img src="images/msp-interrupts-buttons.jpg" alt="Button interrupt screen" />
+      <div class="screen-caption"><div class="part-title">Buttons</div><div class="part-subtitle">GPIO interrupts</div><p class="part-desc">LaunchPad and BoosterPack buttons trigger interrupts and toggle different LEDs with software debouncing.</p></div>
+    </div>
+    <div class="screen-card reveal">
+      <img src="images/msp-interrupts-timer.jpg" alt="Timer32 interrupt screen" />
+      <div class="screen-caption"><div class="part-title">Timer</div><div class="part-subtitle">Timer32 / Custom ISR</div><p class="part-desc">Timer32 increments a counter once per second using interrupts, with the custom handler registered through the IVT.</p></div>
+    </div>
+    <div class="screen-card reveal">
+      <img src="images/msp-interrupts-uart.jpg" alt="UART interrupt screen" />
+      <div class="screen-caption"><div class="part-title">UART</div><div class="part-subtitle">Receive interrupt / LPM0 wake</div><p class="part-desc">Incoming UART characters wake the processor, update the display, and prove the serial path is working live.</p></div>
+    </div>
+    <div class="screen-card reveal">
+      <img src="images/msp-interrupts-joystick.jpg" alt="Joystick ADC screen" />
+      <div class="screen-caption"><div class="part-title">Joystick</div><div class="part-subtitle">ADC14 continuous sampling</div><p class="part-desc">The joystick X and Y axes are sampled through ADC14 interrupts and displayed on the LCD as they update.</p></div>
+    </div>
+    <div class="screen-card reveal">
+      <img src="images/msp-interrupts-color.jpg" alt="PWM color mixer screen" />
+      <div class="screen-caption"><div class="part-title">Color Mixer</div><div class="part-subtitle">TimerA PWM / Port Mapping</div><p class="part-desc">The final task mixes red, green, and blue LED channels independently with PWM. Tiny RGB control panel, basically.</p></div>
+    </div>
+  </div>
+</div>
+
+<div style="padding:3rem 10vw;">
+  <button class="back-btn" style="padding:0;" onclick="showProject('msp')">&#8592; Back to MSP projects</button>
+</div>
+</div>
+
+
 <!-- HAPTIC DETAIL -->
 <div id="haptic-detail" class="telescope-detail">
 <button class="back-btn" onclick="showMain()">&#8592; Back to projects</button>
@@ -725,13 +970,14 @@ Along the way I’ve gotten into embedded systems, assistive neurotechnology, RF
 <script>
   function showProject(name) {
     document.getElementById('main-page').style.display = 'none';
+    document.querySelectorAll('.telescope-detail').forEach(d => d.classList.remove('active'));
     document.getElementById(name + '-detail').classList.add('active');
     window.scrollTo(0, 0);
     setTimeout(() => { document.querySelectorAll('#' + name + '-detail .reveal').forEach(el => observer.observe(el)); }, 100);
   }
   function showMain() {
     document.getElementById('main-page').style.display = 'block';
-    document.querySelectorAll('.telescope-detail, #arm-detail, #haptic-detail').forEach(d => d.classList.remove('active'));
+    document.querySelectorAll('.telescope-detail').forEach(d => d.classList.remove('active'));
     window.scrollTo(0, 0);
   }
   const observer = new IntersectionObserver((entries) => {
