@@ -146,13 +146,28 @@
   .projects-section .section-label, .projects-section > h2 { align-self: flex-start; }
   .project-card { border-radius: 12px; overflow: hidden; background: var(--cream); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; text-decoration: none; color: var(--ink); display: flex; flex-direction: row; width: 100%; max-width: 700px; }
   .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+  .project-card.in-progress { cursor: default; background: #e3dfd7; border: 1px dashed rgba(26,26,46,0.22); color: rgba(26,26,46,0.78); }
+  .project-card.in-progress:hover { transform: none; box-shadow: none; }
   .project-card-img { width: 200px; min-width: 200px; flex-shrink: 0; overflow: hidden; min-height: 160px; }
   .project-card-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.5s ease; display: block; }
   .project-card:hover .project-card-img img { transform: scale(1.05); }
+  .project-card.in-progress:hover .project-card-img img { transform: none; }
+  .project-card-img.placeholder {
+    display: grid; place-items: center; padding: 1.2rem;
+    background: #ddd8d0;
+  }
+  .neuro-mark { width: min(150px, 94%); height: auto; }
+  .neuro-mark .board { fill: rgba(26,26,46,0.78); }
+  .neuro-mark .trace { fill: none; stroke: #f5f2eb; stroke-linecap: round; stroke-linejoin: round; stroke-width: 7; }
+  .neuro-mark .node { fill: rgba(26,26,46,0.78); stroke: #f5f2eb; stroke-width: 6; }
+  .neuro-mark .accent-node { fill: var(--accent); stroke: #f5f2eb; stroke-width: 5; }
   .project-card-body { padding: 1.5rem 2rem; display: flex; flex-direction: column; justify-content: center; flex: 1; }
   .project-card-meta { font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 0.5rem; }
+  .project-card.in-progress .project-card-meta { color: rgba(26,26,46,0.45); }
   .project-card-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; line-height: 1.25; margin-bottom: 0.6rem; }
   .project-card-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+  .project-card.in-progress .project-card-desc { color: rgba(26,26,46,0.58); }
+  .status-badge { display: inline-flex; width: fit-content; align-items: center; margin-top: 1rem; padding: 0.4rem 0.75rem; border-radius: 100px; background: rgba(195,161,224,0.24); color: #9f68c9; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
   .project-card-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1rem; font-size: 0.8rem; font-weight: 500; color: var(--accent); text-decoration: none; }
   .project-card-link::after { content: ' →'; }
   .subprojects-grid { display: flex; flex-direction: column; gap: 1.5rem; }
@@ -398,6 +413,36 @@
   <p class="section-label">Selected Projects</p>
   <h2 class="reveal">Things I built,<br>broke, and fixed.</h2>
   <div class="projects-grid">
+    <div class="project-card in-progress reveal">
+      <div class="project-card-img placeholder" aria-hidden="true">
+        <svg class="neuro-mark" viewBox="0 0 180 150" role="img" aria-label="Brain circuit icon">
+          <path class="board" d="M30 55 18 69v29l16 15h29l16 18h33v-18h27l22-22V64l-23-22h-20L105 26H75L63 40H42Z"/>
+          <path class="trace" d="M32 88h24l15-15h24"/>
+          <path class="trace" d="M62 113h42"/>
+          <path class="trace" d="M92 42v31"/>
+          <path class="trace" d="M112 73h30"/>
+          <path class="trace" d="M116 113v-21h24"/>
+          <path class="trace" d="M48 58v21"/>
+          <path class="trace" d="M72 55h17l16-17"/>
+          <path class="trace" d="M74 94h42"/>
+          <path class="trace" d="M94 113v22"/>
+          <circle class="node" cx="32" cy="88" r="8"/>
+          <circle class="node" cx="95" cy="73" r="8"/>
+          <circle class="node" cx="62" cy="113" r="8"/>
+          <circle class="node" cx="142" cy="73" r="8"/>
+          <circle class="node" cx="140" cy="92" r="8"/>
+          <circle class="node" cx="105" cy="38" r="8"/>
+          <circle class="accent-node" cx="48" cy="58" r="8"/>
+          <circle class="accent-node" cx="116" cy="113" r="8"/>
+        </svg>
+      </div>
+      <div class="project-card-body">
+        <p class="project-card-meta">In Progress &middot; Embedded BCI &middot; Raspberry Pi</p>
+        <h3 class="project-card-title">EEG Classifier + PCB Feedback Board</h3>
+        <p class="project-card-desc">A low-cost embedded BCI practice project that replays prerecorded motor-imagery EEG data on a Raspberry Pi, classifies simple movement states, and displays playback, filtering, confidence, and failsafe status on a custom PCB feedback board.</p>
+        <span class="status-badge">In progress</span>
+      </div>
+    </div>
     <a class="project-card reveal" onclick="showProject('msp'); return false;" href="#">
       <div class="project-card-img">
         <img src="images/msp-launchpad-boosterpack.jpg" alt="MSP432 LaunchPad and BoosterPack project screens" />
