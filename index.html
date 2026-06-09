@@ -185,12 +185,13 @@
   .telescope-detail.active { display: block; min-height: 100vh; background: var(--paper); }
   .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1.5rem 10vw 0; font-size: 0.82rem; font-weight: 500; color: var(--muted); text-decoration: none; cursor: pointer; letter-spacing: 0.04em; transition: color 0.2s; background: none; border: none; }
   .back-btn:hover { color: var(--accent); }
-  .project-hero { position: relative; overflow: hidden; height: 75vh; margin: 1.5rem 10vw 4rem; border-radius: 16px; }
+  .project-hero { position: relative; overflow: hidden; height: 75vh; margin: 1.5rem 10vw 1rem; border-radius: 16px; }
   .project-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
   .project-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,26,46,0.85) 0%, rgba(26,26,46,0.2) 50%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 3rem; }
   .project-hero-meta { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.6); margin-bottom: 0.75rem; }
   .project-hero h3 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 4rem); color: white; line-height: 1.1; margin-bottom: 0.75rem; }
-  .project-hero-badge { display: inline-block; background: var(--accent); color: white; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.35rem 0.85rem; border-radius: 100px; }
+  .project-hero-badge-row { display: flex; margin: 0 10vw 4rem; }
+  .project-hero-badge { display: inline-flex; width: 100%; max-width: 100%; box-sizing: border-box; background: var(--accent); color: white; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.35rem 0.85rem; border-radius: 100px; line-height: 1.35; }
   .project-body { padding: 0 10vw; max-width: 1400px; }
   .project-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-bottom: 5rem; align-items: start; }
   .project-intro h4 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 1rem; line-height: 1.3; }
@@ -310,8 +311,9 @@
   }
   @media (max-width: 760px) {
     nav { padding: 0.8rem 1.25rem; }
-    .project-hero { height: auto; aspect-ratio: 4 / 3; margin: 1rem 6vw 2.5rem; }
+    .project-hero { height: auto; aspect-ratio: 4 / 3; margin: 1rem 6vw 0.85rem; }
     .project-hero-overlay { padding: 1.75rem; }
+    .project-hero-badge-row { margin: 0 6vw 2.5rem; }
     .results-grid { grid-template-columns: 1fr; gap: 1.25rem; }
     .contact-links { grid-template-columns: 1fr; }
   }
@@ -402,7 +404,6 @@
     <p class="about-label">About Me</p>
     <h2>Built for the intersection of brains and machines.</h2>
     <p>I&rsquo;m pursuing dual degrees in Computer Engineering (Machine Learning concentration) and Neuroscience (Computational and Systems) at Virginia Tech. My passion is neural engineering, the software and hardware that let brains and machines communicate.</p>
-    <p>I&rsquo;ve worked across undergraduate research labs, RF payload engineering for a NASA competition team, and build projects ranging from surgical haptic systems to gesture-controlled robotic arms.</p>
     <p>Outside of engineering: I’m an avid skier and outdoorsy person, a Lego enthusiast, and the author of a children’s STEM book available in Bucks County schools to motivate the next generation of girls into engineering.</p>
   </div>
 
@@ -564,8 +565,10 @@
   <div class="project-hero-overlay">
     <p class="project-hero-meta">Sep 2022 &ndash; Mar 2023 &nbsp;&middot;&nbsp; High School Astronomy Research</p>
     <h3>Dobsonian<br>Telescope,<br>From Scratch</h3>
-    <span class="project-hero-badge">1st Place &middot; Bucks County Science Research Competition</span>
   </div>
+</div>
+<div class="project-hero-badge-row">
+  <span class="project-hero-badge">1st Place &middot; Bucks County Science Research Competition</span>
 </div>
 <div class="project-body">
   <div class="project-intro reveal">
@@ -613,23 +616,20 @@
     </div>
   </div>
   <div class="part-row flip reveal">
-    <div class="part-imgs-grid">
-      <img src="images/12-painted-tube.jpg" alt="Painted tube" style="object-position:center;" />
-      <img src="images/13-final-tube-with-focuser.jpg" alt="Final tube with focuser" style="object-position:center;" />
-    </div>
+    <div class="part-img"><img src="images/12-painted-tube.jpg" alt="Painted tube" style="object-position:center;" /></div>
     <div class="part-text">
-      <div class="part-number">04</div><div class="part-title">Painting &amp; Final Build</div><div class="part-subtitle">Light Baffle + Focuser + Finder Scope</div>
-      <p class="part-desc">The tube was spray-painted matte black inside and out. Stray light creates glare that washes out faint objects. The right shows the finished tube with the rack-and-pinion focuser and finder scope above it.</p>
+      <div class="part-number">04</div><div class="part-title">Painting &amp; Light Control</div><div class="part-subtitle">Matte Black Interior / Light Baffle</div>
+      <p class="part-desc">The tube was spray-painted matte black inside and out. Stray light creates glare that washes out faint objects, so the interior had to be dark enough to keep the optical path clean before the final hardware went on.</p>
     </div>
   </div>
   <div class="part-row reveal">
     <div class="part-imgs-grid">
       <img src="images/14-focuser.jpg" alt="Focuser" style="object-position:center;" />
-      <img src="images/15-finder-scope.jpg" alt="Finder scope" style="object-position:center;" />
+      <img src="images/06-dobsonian-telescope-at-night.jpg" alt="Finished telescope with finder scope" style="object-position:center;" />
     </div>
     <div class="part-text">
       <div class="part-number">05</div><div class="part-title">Focuser &amp; Finder Scope</div><div class="part-subtitle">SVBONY Rack &amp; Pinion &middot; Astromania 6&times;30</div>
-      <p class="part-desc">Left: the focuser slides the eyepiece in and out until the image sharpens. Had to be positioned so the eyepiece lands exactly at the primary mirror&rsquo;s focal plane. Right: the finder scope, a wide-field navigation aid for locating targets.</p>
+      <p class="part-desc">Left: the focuser slides the eyepiece in and out until the image sharpens. Had to be positioned so the eyepiece lands exactly at the primary mirror&rsquo;s focal plane. Right: the finished telescope with the finder scope mounted up top as a wide-field navigation aid for locating targets.</p>
     </div>
   </div>
   <div class="part-row flip reveal">
@@ -666,7 +666,7 @@
     <div class="result-card"><div class="result-num">1st</div><div class="result-label">Place, Bucks County Science Research Competition, 2023, plus Baruch S. Blumberg Award</div></div>
     <div class="result-card"><div class="result-num">HM</div><div class="result-label">Honorable Mention, Regional Delaware Valley Science Fair, 2023</div></div>
   </div>
-  <p>The 0.12% error likely reflects atmospheric seeing conditions and the precision limits of timing orbital transits by eye. For a telescope built at home from repurposed materials, that&rsquo;s a result to be proud of.</p>
+  <p>The 98.88% accuracy likely reflects both careful build alignment and the precision limits of timing orbital transits by eye. For a telescope built at home from repurposed materials, that&rsquo;s a result to be proud of.</p>
 </div>
 <div style="padding:3rem 10vw;">
   <button class="back-btn" style="padding:0;" onclick="showMain()">&#8592; Back to all projects</button>
@@ -707,12 +707,15 @@
   <h3 class="reveal">Every part, explained.</h3>
 
   <div class="part-row reveal">
-    <div class="part-img"><img src="images/21-full-robotic-arm-assembled.jpg" alt="Full robotic arm assembled" /></div>
+    <div class="part-imgs-grid">
+      <img src="images/31-robotic-arm-base-print.jpg" alt="First 3D-printed robotic arm base assembly" />
+      <img src="images/21-full-robotic-arm-assembled.jpg" alt="Full robotic arm assembled" />
+    </div>
     <div class="part-text">
       <div class="part-number">01</div>
       <div class="part-title">The Arm</div>
       <div class="part-subtitle">3D-Printed / Six-Axis / NEMA-17 Base</div>
-      <p class="part-desc">Fully 3D-printed across six axes: gripper, two wrist joints, elbow, shoulder pair, and a rotating base. The base uses a NEMA-17 stepper rather than a servo for significantly more torque. MG996-class servos handle the upper joints, driven through a PCA9685 PWM board over I2C so the Arduino Uno isn't tied up generating PWM signals directly.</p>
+      <p class="part-desc">Fully 3D-printed across six axes: gripper, two wrist joints, elbow, shoulder pair, and a rotating base. The left photo shows one of the first major printed assemblies: the base bearing, gear, and fastener stack that everything else had to build on. The base uses a NEMA-17 stepper rather than a servo for significantly more torque. MG996-class servos handle the upper joints, driven through a PCA9685 PWM board over I2C so the Arduino Uno isn't tied up generating PWM signals directly.</p>
     </div>
   </div>
 
@@ -737,12 +740,15 @@
   </div>
 
   <div class="part-row flip reveal">
-    <div class="part-img"><img src="images/24-wearable-sensor-glove.jpg" alt="Wearable sensor glove" /></div>
+    <div class="part-imgs-grid">
+      <img src="images/32-robotic-arm-glove-closeup.jpg" alt="Glove controller wiring closeup" />
+      <img src="images/24-wearable-sensor-glove.jpg" alt="Wearable sensor glove" />
+    </div>
     <div class="part-text">
       <div class="part-number">04</div>
       <div class="part-title">The Gauntlet</div>
       <div class="part-subtitle">Arduino Nano / Flex Sensors / Dual MPU6050</div>
-      <p class="part-desc">Three flex sensors detect finger curl; two MPU6050 IMUs track wrist tilt and arm orientation. An Arduino Nano reads all five simultaneously and encodes the gesture into single-character commands: F/f for finger open/close, U/D for up/down, L/R for rotation. Compact by design, keeping the Bluetooth link fast and the arm-side parsing simple.</p>
+      <p class="part-desc">Three flex sensors detect finger curl; two MPU6050 IMUs track wrist tilt and arm orientation. The close-up shows the glove-side electronics packed onto the wearable board: Arduino Nano, sensors, wiring, and battery all moving with the hand. The Nano reads all five inputs simultaneously and encodes the gesture into single-character commands: F/f for finger open/close, U/D for up/down, L/R for rotation. Compact by design, keeping the Bluetooth link fast and the arm-side parsing simple.</p>
     </div>
   </div>
 
@@ -834,8 +840,10 @@
   <div class="project-hero-overlay">
     <p class="project-hero-meta">Project 1 &middot; FSM &middot; UART &middot; MSP432</p>
     <h3>Minesweeper<br>on the BoosterPack</h3>
-    <span class="project-hero-badge">LCD Game &middot; Adjustable Board &middot; Non-blocking</span>
   </div>
+</div>
+<div class="project-hero-badge-row">
+  <span class="project-hero-badge">LCD Game &middot; Adjustable Board &middot; Non-blocking</span>
 </div>
 
 <div class="project-body">
@@ -907,8 +915,10 @@
   <div class="project-hero-overlay">
     <p class="project-hero-meta">Project 3 &middot; Interrupts &middot; ADC &middot; PWM</p>
     <h3>Interrupt-Driven<br>Hardware Tasks</h3>
-    <span class="project-hero-badge">GPIO &middot; Timer32 &middot; UART &middot; Joystick &middot; Color Mixer</span>
   </div>
+</div>
+<div class="project-hero-badge-row">
+  <span class="project-hero-badge">GPIO &middot; Timer32 &middot; UART &middot; Joystick &middot; Color Mixer</span>
 </div>
 
 <div class="project-body">
