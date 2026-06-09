@@ -114,6 +114,7 @@
   /* ABOUT */
   .about {
     padding: 6rem max(7vw, calc((100vw - var(--page-max)) / 2)); border-top: 1px solid rgba(0,0,0,0.08);
+    display: flex; justify-content: center; text-align: center;
   }
   .about-label { font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 1.5rem; }
   .about h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3vw, 3rem); line-height: 1.2; margin-bottom: 1.5rem; }
@@ -200,10 +201,10 @@
   .results-section > p { color: rgba(255,255,255,0.6); line-height: 1.8; max-width: 700px; font-size: 1rem; }
 
   /* RESEARCH */
-  .research-section { padding: 5rem 10vw; border-top: 1px solid rgba(0,0,0,0.08); text-align: center; }
-  .research-section .section-label { font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 1rem; }
-  .research-section > h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.15; margin-bottom: 3rem; }
-  .research-grid { display: flex; flex-direction: column; gap: 0; max-width: 860px; margin: 0 auto; text-align: left; }
+  .research-section { padding: 5rem 10vw; border-top: 1px solid rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center; }
+  .research-section .section-label { width: min(860px, 100%); font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 1rem; text-align: center; }
+  .research-section > h2 { width: min(860px, 100%); font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.15; margin-bottom: 3rem; text-align: center; }
+  .research-grid { width: min(860px, 100%); display: flex; flex-direction: column; gap: 0; text-align: left; }
   .research-card { padding: 2rem 2.5rem; background: var(--cream); border-radius: 12px; color: var(--ink); display: flex; align-items: flex-start; gap: 1.5rem; transition: transform 0.2s ease, box-shadow 0.2s ease; border: 1px solid transparent; margin-bottom: 1.5rem; }
   .research-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.09); }
   .research-card > div { flex: 1; min-width: 0; }
@@ -266,9 +267,7 @@
   }
   .about-content {
     max-width: 860px;
-  }
-  .about-content p {
-    margin-left: clamp(0rem, 3vw, 2.5rem);
+    margin: 0 auto;
   }
   @media (max-width: 900px) {
     .hero-two-col { grid-template-columns: 1fr; gap: 2rem; }
@@ -301,7 +300,6 @@
     .about, .projects-section, .research-section, .results-section { padding-left: 7vw; padding-right: 7vw; }
     .contact { width: 100%; padding: 4rem 7vw; }
     .contact-link { min-height: 72px; overflow-wrap: anywhere; }
-    .about-content p { margin-left: 0; }
     .project-card { flex-direction: column; max-width: 100%; }
     .project-card-img { width: 100%; min-width: 0; min-height: 0; height: 190px; }
     .project-card-body { padding: 1.25rem 1.5rem; }
