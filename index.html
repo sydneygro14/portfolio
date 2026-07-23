@@ -390,7 +390,7 @@
           </div>
         </div>
         <div class="hero-right-col">
-          <p class="hero-sub">Hi, I’m Sydney, a junior at Virginia Tech pursuing dual degrees in Computer Engineering and Computational Neuroscience. My long-term goal is to work on brain-computer interfaces and to push the boundaries of what technology can do for the human brain.<br><br>Along the way I’ve gotten into embedded systems, assistive neurotechnology, RF sensing, neuromodulation, space systems, AI, and robotics. (The scenic route, if you will.)</p>
+          <p class="hero-sub">Hi, I’m Sydney, a junior at Virginia Tech pursuing dual degrees in Computer Engineering and Computational Neuroscience. My long-term goal is to push the boundaries of what technology can do for the human brain.<br><br>Along the way I’ve gotten into embedded systems, assistive neurotechnology, RF sensing, neuromodulation, space systems, AI, and robotics. (The scenic route, if you will.)</p>
         </div>
       </div>
     </div>
@@ -400,8 +400,7 @@
 <!-- ABOUT -->
 <section class="about" id="about">
   <div class="reveal about-content">
-    <p class="about-label">About Me</p>
-    <h2>Built for the intersection of brains and machines.</h2>
+    <h2>About Me</h2>
     <p>I&rsquo;m pursuing dual degrees in Computer Engineering (Machine Learning concentration) and Neuroscience (Computational and Systems) at Virginia Tech. My passion is neural engineering, the software and hardware that let brains and machines communicate.</p>
     <p>Outside of engineering: I’m an avid skier and outdoorsy person, a Lego enthusiast, and the author of a children’s STEM book available in Bucks County schools to motivate the next generation of girls into engineering.</p>
   </div>
@@ -413,36 +412,17 @@
   <p class="section-label">Selected Projects</p>
   <h2 class="reveal">Things I built,<br>broke, and fixed.</h2>
   <div class="projects-grid">
-    <div class="project-card in-progress reveal">
-      <div class="project-card-img placeholder" aria-hidden="true">
-        <svg class="neuro-mark" viewBox="0 0 180 150" role="img" aria-label="Brain circuit icon">
-          <path class="board" d="M30 55 18 69v29l16 15h29l16 18h33v-18h27l22-22V64l-23-22h-20L105 26H75L63 40H42Z"/>
-          <path class="trace" d="M32 88h24l15-15h24"/>
-          <path class="trace" d="M62 113h42"/>
-          <path class="trace" d="M92 42v31"/>
-          <path class="trace" d="M112 73h30"/>
-          <path class="trace" d="M116 113v-21h24"/>
-          <path class="trace" d="M48 58v21"/>
-          <path class="trace" d="M72 55h17l16-17"/>
-          <path class="trace" d="M74 94h42"/>
-          <path class="trace" d="M94 113v22"/>
-          <circle class="node" cx="32" cy="88" r="8"/>
-          <circle class="node" cx="95" cy="73" r="8"/>
-          <circle class="node" cx="62" cy="113" r="8"/>
-          <circle class="node" cx="142" cy="73" r="8"/>
-          <circle class="node" cx="140" cy="92" r="8"/>
-          <circle class="node" cx="105" cy="38" r="8"/>
-          <circle class="accent-node" cx="48" cy="58" r="8"/>
-          <circle class="accent-node" cx="116" cy="113" r="8"/>
-        </svg>
+    <a class="project-card reveal" onclick="showProject('neurogpio'); return false;" href="#">
+      <div class="project-card-img">
+        <img src="images/neurogpio-pcb-feedback.jpg" alt="NeuroGPIO Raspberry Pi PCB feedback board with LED output" />
       </div>
       <div class="project-card-body">
-        <p class="project-card-meta">In Progress &middot; Embedded BCI &middot; Raspberry Pi</p>
-        <h3 class="project-card-title">EEG Classifier + PCB Feedback Board</h3>
-        <p class="project-card-desc">A low-cost embedded BCI practice project that replays prerecorded motor-imagery EEG data on a Raspberry Pi, trains an AI model to classify motor-imagery classes, and displays the predicted body-part output on a custom PCB feedback board.</p>
-        <span class="status-badge">In progress</span>
+        <p class="project-card-meta">2026 &middot; AI/ML &middot; Neurotechnology</p>
+        <h3 class="project-card-title">NeuroGPIO: EEG Classifier + PCB Feedback Board</h3>
+        <p class="project-card-desc">A completed BCI prototype that classifies prerecorded motor-imagery EEG trials with a classical machine-learning pipeline and routes each prediction to a Raspberry Pi PCB feedback board.</p>
+        <span class="project-card-link">Read more</span>
       </div>
-    </div>
+    </a>
     <a class="project-card reveal" onclick="showProject('msp'); return false;" href="#">
       <div class="project-card-img">
         <img src="images/msp-launchpad-boosterpack.jpg" alt="MSP432 LaunchPad and BoosterPack project screens" />
@@ -549,6 +529,53 @@
   <span>&copy; 2026 Sydney Groves</span>
   <span>Virginia Tech &middot; Computer Engineering &amp; Computational Neuroscience</span>
 </footer>
+</div>
+
+<!-- NEUROGPIO DETAIL -->
+<div id="neurogpio-detail" class="telescope-detail">
+<button class="back-btn" onclick="showMain()">&#8592; Back to projects</button>
+
+<div class="project-hero">
+  <img src="images/neurogpio-pcb-feedback.jpg" alt="NeuroGPIO custom PCB mounted on a Raspberry Pi" />
+  <div class="project-hero-overlay">
+    <p class="project-hero-meta">2026 &middot; AI/ML &middot; BCI &middot; Raspberry Pi</p>
+    <h3>NeuroGPIO<br>EEG Classifier</h3>
+  </div>
+</div>
+
+<div class="project-body">
+  <div class="project-intro reveal">
+    <div>
+      <h4>Classical machine learning, wired to a PCB.</h4>
+      <p>NeuroGPIO is a compact BCI project that uses prerecorded EEG trials to classify motor-imagery states and turn the prediction into physical feedback. The output layer maps left hand, right hand, feet, tongue, and rest to separate LEDs on a custom Raspberry Pi PCB.</p>
+      <p>The decoder uses a classical machine-learning pipeline: filter-bank preprocessing, Common Spatial Patterns feature extraction, SelectKBest feature selection, and Linear Discriminant Analysis classification. Adding feature selection improved mean cross-validated accuracy from 83.9% to 85.9%, with a held-out demo result of 87.5%.</p>
+      <p><a class="project-card-link" href="https://github.com/sydneygro14/NeuroGPIO.git" target="_blank">View code</a></p>
+    </div>
+    <div>
+      <div class="aside"><strong>The ML pipeline.</strong> Filter Bank CSP separates motor-imagery EEG into frequency-specific spatial features, then LDA classifies the selected features into the predicted output state.</div>
+      <div class="aside"><strong>The hardware path.</strong> A lightweight Raspberry Pi runtime receives the predicted class and drives the corresponding LED on the PCB feedback board.</div>
+    </div>
+  </div>
+</div>
+
+<div class="parts-section">
+  <p class="parts-label">System Snapshot</p>
+  <h3 class="reveal">The classifier output, made visible.</h3>
+  <div class="screen-grid reveal">
+    <div class="screen-card">
+      <img src="images/neurogpio-eeg-monitor.jpg" alt="NeuroGPIO EEG waveform monitor showing motor cortex EEG channels" />
+      <div class="screen-caption"><div class="part-title">EEG Monitor</div><div class="part-subtitle">Real prerecorded EEG playback</div><p class="part-desc">The monitor displays motor-cortex EEG channels while stepping through trials and comparing predicted versus actual labels.</p></div>
+    </div>
+    <div class="screen-card">
+      <img src="images/neurogpio-pcb-feedback.jpg" alt="NeuroGPIO PCB feedback board lighting the feet LED" />
+      <div class="screen-caption"><div class="part-title">PCB Feedback Board</div><div class="part-subtitle">Raspberry Pi GPIO output</div><p class="part-desc">Each decoded state is routed to a dedicated LED, making the classifier output visible on hardware instead of only in the terminal.</p></div>
+    </div>
+  </div>
+</div>
+
+<div style="padding:3rem 10vw;">
+  <button class="back-btn" style="padding:0;" onclick="showMain()">&#8592; Back to all projects</button>
+</div>
 </div>
 
 <!-- TELESCOPE DETAIL -->
@@ -921,7 +948,6 @@
       <h4>One board, five screens, many ways to wake the processor up.</h4>
       <p>This project was built around interrupts: GPIO button presses, Timer32, UART receive, ADC joystick sampling, and PWM color mixing. The application cycles through a main menu and five task screens, each one demonstrating a different peripheral behavior on the MSP432 and BoosterPack.</p>
       <p>The hardest task was the Color Mixer. TimerA PWM drives the red, green, and blue LED channels independently through port mapping. JSB cycles the selected color, BB1 increases the value, BB2 decreases it, and the BoosterPack LED updates immediately.</p>
-      <p><a class="project-card-link" href="https://github.com/VT-ECE-2564-assignments/sp26-proj3-sydneygro14.git" target="_blank">View code</a></p>
     </div>
     <div>
       <div class="aside"><strong>The interrupt stack.</strong> GPIO interrupts handled buttons, ADC14 continuously sampled the joystick axes, UART receive woke the processor from LPM0, and Timer32 used a custom ISR registered through the interrupt vector table.</div>
