@@ -195,6 +195,8 @@
   .project-hero-badge { display: inline-flex; width: 100%; max-width: 100%; box-sizing: border-box; background: var(--accent); color: white; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.35rem 0.85rem; border-radius: 100px; line-height: 1.35; }
   .project-body { padding: 0 10vw; max-width: 1400px; }
   .project-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-bottom: 5rem; align-items: start; }
+  .project-intro.neurogpio-intro { grid-template-columns: minmax(0, 920px); gap: 0; max-width: 980px; }
+  .project-hero.neurogpio-hero img { object-position: center 58%; }
   .project-intro h4 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 1rem; line-height: 1.3; }
   .project-intro p { color: var(--muted); line-height: 1.85; font-size: 1rem; margin-bottom: 1rem; }
   .aside { padding: 1.5rem; background: var(--cream); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; font-size: 0.95rem; color: var(--ink); line-height: 1.7; margin-bottom: 1rem; }
@@ -535,25 +537,21 @@
 <div id="neurogpio-detail" class="telescope-detail">
 <button class="back-btn" onclick="showMain()">&#8592; Back to projects</button>
 
-<div class="project-hero">
-  <img src="images/neurogpio-pcb-feedback.jpg" alt="NeuroGPIO custom PCB mounted on a Raspberry Pi" />
+<div class="project-hero neurogpio-hero">
+  <img src="images/neurogpio-system-demo.jpg" alt="NeuroGPIO EEG monitor and Raspberry Pi PCB feedback board running together" />
   <div class="project-hero-overlay">
-    <p class="project-hero-meta">2026 &middot; AI/ML &middot; BCI &middot; Raspberry Pi</p>
+    <p class="project-hero-meta">Summer 2026 &middot; AI/ML &middot; BCI &middot; Raspberry Pi</p>
     <h3>NeuroGPIO<br>EEG Classifier</h3>
   </div>
 </div>
 
 <div class="project-body">
-  <div class="project-intro reveal">
+  <div class="project-intro reveal neurogpio-intro">
     <div>
       <h4>Classical machine learning, wired to a PCB.</h4>
-      <p>NeuroGPIO is a compact BCI project that uses prerecorded EEG trials to classify motor-imagery states and turn the prediction into physical feedback. The output layer maps left hand, right hand, feet, tongue, and rest to separate LEDs on a custom Raspberry Pi PCB.</p>
-      <p>The decoder uses a classical machine-learning pipeline: filter-bank preprocessing, Common Spatial Patterns feature extraction, SelectKBest feature selection, and Linear Discriminant Analysis classification. Adding feature selection improved mean cross-validated accuracy from 83.9% to 85.9%, with a held-out demo result of 87.5%.</p>
-      <p><a class="project-card-link" href="https://github.com/sydneygro14/NeuroGPIO.git" target="_blank">View code</a></p>
-    </div>
-    <div>
-      <div class="aside"><strong>The ML pipeline.</strong> Filter Bank CSP separates motor-imagery EEG into frequency-specific spatial features, then LDA classifies the selected features into the predicted output state.</div>
-      <div class="aside"><strong>The hardware path.</strong> A lightweight Raspberry Pi runtime receives the predicted class and drives the corresponding LED on the PCB feedback board.</div>
+      <p>NeuroGPIO is a compact BCI project I built during Summer 2026 alongside my internship. It uses prerecorded EEG trials to classify motor-imagery states and turn the prediction into physical feedback. The output layer maps left hand, right hand, feet, tongue, and rest to separate LEDs on a custom Raspberry Pi PCB.</p>
+      <p>The full pipeline runs from EEG trial playback to epoch windowing, filter-bank preprocessing, Common Spatial Patterns feature extraction, SelectKBest feature selection, Linear Discriminant Analysis classification, and GPIO output. Adding feature selection improved mean cross-validated accuracy from 83.9% to 85.9%, with a held-out demo result of 87.5%.</p>
+      <p>This was my first project building both a PCB and an AI/ML decoder into one working system. It helped me understand not just how to train a classifier, but how to make model output useful in hardware: debugging Raspberry Pi GPIO, handling package/version issues, validating model changes with cross-validation, and translating software predictions into physical behavior.</p>
     </div>
   </div>
 </div>
@@ -564,11 +562,11 @@
   <div class="screen-grid reveal">
     <div class="screen-card">
       <img src="images/neurogpio-eeg-monitor.jpg" alt="NeuroGPIO EEG waveform monitor showing motor cortex EEG channels" />
-      <div class="screen-caption"><div class="part-title">EEG Monitor</div><div class="part-subtitle">Real prerecorded EEG playback</div><p class="part-desc">The monitor displays motor-cortex EEG channels while stepping through trials and comparing predicted versus actual labels.</p></div>
+      <div class="screen-caption"><div class="part-title">EEG Monitor</div><div class="part-subtitle">Real prerecorded EEG playback</div><p class="part-desc">The monitor displays motor-cortex EEG channels while stepping through trials and comparing predicted versus actual labels. This view made the decoding loop easier to inspect: each trial moves from signal playback into feature extraction, classification, and a predicted output state.</p></div>
     </div>
     <div class="screen-card">
       <img src="images/neurogpio-pcb-feedback.jpg" alt="NeuroGPIO PCB feedback board lighting the feet LED" />
-      <div class="screen-caption"><div class="part-title">PCB Feedback Board</div><div class="part-subtitle">Raspberry Pi GPIO output</div><p class="part-desc">Each decoded state is routed to a dedicated LED, making the classifier output visible on hardware instead of only in the terminal.</p></div>
+      <div class="screen-caption"><div class="part-title">PCB Feedback Board</div><div class="part-subtitle">Raspberry Pi GPIO output</div><p class="part-desc">A lightweight Raspberry Pi runtime receives the predicted class and drives the corresponding LED on the PCB feedback board. The board turns the ML pipeline into a visible hardware response instead of leaving the result only in the terminal.</p></div>
     </div>
   </div>
 </div>
