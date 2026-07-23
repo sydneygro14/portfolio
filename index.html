@@ -247,6 +247,10 @@
   .research-card-meta { font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.5rem; margin-top: 0.4rem; display: block; }
   .research-card-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; line-height: 1.2; margin-bottom: 0; }
   .research-card-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-top: 0.5rem; }
+  .research-role-list { margin: 0.65rem 0 0; padding-left: 1.1rem; color: var(--muted); font-size: 16px; line-height: 1.7; }
+  .research-role-list li { margin-bottom: 0.75rem; }
+  .research-role-list li:last-child { margin-bottom: 0; }
+  .research-role-list strong { color: var(--ink); font-weight: 600; }
 
   /* SIDEQUESTS */
   .sidequests-section { padding: 3rem 10vw; border-top: 1px solid rgba(0,0,0,0.08); display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
@@ -480,22 +484,25 @@
   <h2 class="reveal">Where I spend<br>my time.</h2>
   <div class="research-grid">
     <div class="research-card reveal">
+      <span class="research-card-icon">&#128640;</span>
+      <div>
+        <h3 class="research-card-title">NASA Student Launch Team</h3>
+        <span class="research-card-meta">AUGUST 2025 &ndash; PRESENT &middot; NASA STUDENT LAUNCH AT VT</span>
+        <ul class="research-role-list">
+          <li><strong>Design Validation Engineer, 2026&ndash;2027:</strong> Continuing with the team in a design validation role, focused on testing, verification, and reliability of student launch systems throughout the design-build-review cycle.</li>
+          <li><strong>Payload Engineer, 2025&ndash;2026:</strong> Designed and tested a LoRa RF payload for the NASA Student Launch competition, focusing on system integration, structural integrity, and data acquisition. The team qualified and competed at NASA&rsquo;s Marshall Space Flight Center in Huntsville, Alabama in April 2026, placing 7th overall after successfully passing NASA&rsquo;s design review process.</li>
+        </ul>
+        <div style="margin-top:1.25rem;border-radius:10px;overflow:hidden;line-height:0;">
+          <img src="images/05-sydney-with-nasa-rocket.jpg?v=2" alt="Sydney with NASA rocket" style="width:100%;height:auto;max-width:280px;display:block;border-radius:10px;" />
+        </div>
+      </div>
+    </div>
+    <div class="research-card reveal">
       <span class="research-card-icon">&#129504;</span>
       <div>
         <h3 class="research-card-title">Legon Lab</h3>
         <span class="research-card-meta">AUG 2025 – MAY 2026 · FRALIN BIOMEDICAL RESEARCH INSTITUTE</span>
         <p class="research-card-desc" style="font-size: 16px">Undergraduate Researcher under Dr. Legon, investigating LIFU (low-intensity focused ultrasound) to measure neuromodulation in pain circuits. Responsible for EEG data collection, MRI analysis, LIFU preparation, and conducting participant trials.</p>
-      </div>
-    </div>
-    <div class="research-card reveal">
-      <span class="research-card-icon">&#128640;</span>
-      <div>
-        <h3 class="research-card-title">NASA Payload Sub-Team</h3>
-        <span class="research-card-meta">AUGUST 2025 – PRESENT · NASA STUDENT LAUNCH AT VT</span>
-        <p class="research-card-desc" style="font-size: 16px">Payload Engineer on the design and testing of a LoRa RF payload for the 2025/2026 NASA Student Launch competition, focusing on system integration, structural integrity, and data acquisition. The team qualified and competed at NASA&rsquo;s Marshall Space Flight Center in Huntsville, Alabama (April 2026), placing 7th in the competition, with the rocket and payload successfully passing NASA&rsquo;s rigorous design review process.</p>
-        <div style="margin-top:1.25rem;border-radius:10px;overflow:hidden;line-height:0;">
-          <img src="images/05-sydney-with-nasa-rocket.jpg?v=2" alt="Sydney with NASA rocket" style="width:100%;height:auto;max-width:280px;display:block;border-radius:10px;" />
-        </div>
       </div>
     </div>
     <div class="research-card reveal">
@@ -505,7 +512,7 @@
         <span class="research-card-meta">JAN 2025 – DEC 2025 · VIRGINIA TECH</span>
         <p class="research-card-desc" style="font-size: 16px">Designed a vibrotactile feedback system for robotic-assisted eye surgery using a load cell with HX711 amplifier to detect surgical tool force, and developed C++ software on an Arduino UNO to generate real-time vibrational cues.</p>
       </div>
-  </div>
+    </div>
   </div>
 </section>
 
