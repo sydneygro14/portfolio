@@ -193,15 +193,16 @@
   .project-hero h3 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 4rem); color: white; line-height: 1.1; margin-bottom: 0.75rem; }
   .project-hero-badge-row { display: flex; margin: 0 10vw 4rem; }
   .project-hero-badge { display: inline-flex; width: 100%; max-width: 100%; box-sizing: border-box; background: var(--accent); color: white; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.35rem 0.85rem; border-radius: 100px; line-height: 1.35; }
-  .project-body { padding: 0 10vw; max-width: 1400px; }
+  .project-body { padding: 0 10vw; max-width: 1400px; margin: 0 auto; box-sizing: border-box; }
   .project-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-bottom: 5rem; align-items: start; }
-  .project-intro.neurogpio-intro { grid-template-columns: minmax(0, 920px); gap: 0; max-width: 980px; }
-  .project-hero.neurogpio-hero img { object-position: center 58%; }
+  .project-intro.neurogpio-intro { grid-template-columns: minmax(0, 920px); gap: 0; max-width: 980px; margin-left: auto; margin-right: auto; }
+  .project-hero.neurogpio-hero img { object-position: center center; }
+  .project-hero.neurogpio-hero .project-hero-overlay { justify-content: flex-start; background: linear-gradient(135deg, rgba(26,26,46,0.88) 0%, rgba(26,26,46,0.42) 38%, rgba(26,26,46,0.08) 100%); }
   .project-intro h4 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 1rem; line-height: 1.3; }
   .project-intro p { color: var(--muted); line-height: 1.85; font-size: 1rem; margin-bottom: 1rem; }
   .aside { padding: 1.5rem; background: var(--cream); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; font-size: 0.95rem; color: var(--ink); line-height: 1.7; margin-bottom: 1rem; }
   .aside strong { font-weight: 500; }
-  .parts-section { padding: 0 10vw 6rem; }
+  .parts-section { padding: 0 10vw 6rem; max-width: 1400px; margin: 0 auto; box-sizing: border-box; }
   .parts-label { font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 1rem; }
   .parts-section > h3 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 3rem; }
   .part-row { display: flex; flex-direction: column; border-top: 1px solid rgba(0,0,0,0.08); }
@@ -538,7 +539,7 @@
 <button class="back-btn" onclick="showMain()">&#8592; Back to projects</button>
 
 <div class="project-hero neurogpio-hero">
-  <img src="images/neurogpio-system-demo.jpg" alt="NeuroGPIO EEG monitor and Raspberry Pi PCB feedback board running together" />
+  <img src="images/neurogpio-hero.jpg" alt="NeuroGPIO Raspberry Pi PCB feedback board connected to an EEG classifier display" />
   <div class="project-hero-overlay">
     <p class="project-hero-meta">Summer 2026 &middot; AI/ML &middot; BCI &middot; Raspberry Pi</p>
     <h3>NeuroGPIO<br>EEG Classifier</h3>
