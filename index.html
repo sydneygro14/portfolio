@@ -562,7 +562,7 @@
       <h4>Classical machine learning, wired to a PCB.</h4>
       <p>NeuroGPIO is a compact BCI project I built during Summer 2026 alongside my internship. It uses prerecorded EEG trials to classify motor-imagery states and turn the prediction into physical feedback. The output layer maps left hand, right hand, feet, tongue, and rest to separate LEDs on a custom Raspberry Pi PCB.</p>
       <p>The full pipeline runs from EEG trial playback to epoch windowing, filter-bank preprocessing, Common Spatial Patterns feature extraction, SelectKBest feature selection, Linear Discriminant Analysis classification, and GPIO output. Adding feature selection improved mean cross-validated accuracy from 83.9% to 85.9%, with a held-out demo result of 87.5%.</p>
-      <p>This was my first project building both a PCB and an AI/ML decoder into one working system. It helped me understand not just how to train a classifier, but how to make model output useful in hardware: debugging Raspberry Pi GPIO, handling package/version issues, validating model changes with cross-validation, and translating software predictions into physical behavior.</p>
+      <p>This was my first project building both a PCB and an AI/ML decoder into one working system. The PCB is intentionally simple: a Raspberry Pi header, five current-limited LED outputs, and readable labels for each decoded class. It helped me understand not just how to train a classifier, but how to make model output useful in hardware: debugging Raspberry Pi GPIO, handling package/version issues, validating model changes with cross-validation, and translating software predictions into physical behavior.</p>
       <ul class="pipeline-list">
         <li><strong>Input:</strong> prerecorded motor-imagery EEG trials from motor-cortex activity.</li>
         <li><strong>Epoch window:</strong> cue-aligned EEG segments from 0.6 to 3.1 seconds after the movement-imagery cue.</li>
@@ -589,6 +589,25 @@
     <div class="screen-card">
       <img src="images/neurogpio-pcb-feedback.jpg" alt="NeuroGPIO PCB feedback board lighting the feet LED" />
       <div class="screen-caption"><div class="part-title">PCB Feedback Board</div><div class="part-subtitle">Raspberry Pi GPIO output</div><p class="part-desc">A lightweight Raspberry Pi runtime receives the predicted class and drives the corresponding LED on the PCB feedback board. The board turns the ML pipeline into a visible hardware response instead of leaving the result only in the terminal.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="parts-section">
+  <p class="parts-label">PCB Design</p>
+  <h3 class="reveal">From schematic to routed feedback board.</h3>
+  <div class="screen-grid reveal">
+    <div class="screen-card">
+      <img src="images/neurogpio-pcb-schematic.png" alt="NeuroGPIO PCB schematic with Raspberry Pi header, resistors, and LED outputs" />
+      <div class="screen-caption"><div class="part-title">Schematic</div><div class="part-subtitle">GPIO to LED feedback</div><p class="part-desc">The circuit maps Raspberry Pi GPIO pins to five labeled LED outputs for left hand, right hand, feet, tongue, and rest. Each LED path uses a current-limiting resistor and a shared ground reference.</p></div>
+    </div>
+    <div class="screen-card">
+      <img src="images/neurogpio-pcb-layout.png" alt="NeuroGPIO routed PCB layout with header, traces, resistors, LEDs, and labels" />
+      <div class="screen-caption"><div class="part-title">PCB Layout</div><div class="part-subtitle">First routed board</div><p class="part-desc">The board layout keeps the Raspberry Pi header, traces, resistors, LEDs, and silkscreen labels visible so the hardware output can be debugged without guessing which prediction maps to which LED.</p></div>
+    </div>
+    <div class="screen-card">
+      <img src="images/neurogpio-pcb-3d-preview.png" alt="NeuroGPIO 3D PCB preview showing the header, resistors, LED footprints, and silkscreen labels" />
+      <div class="screen-caption"><div class="part-title">3D Preview</div><div class="part-subtitle">Fabrication check</div><p class="part-desc">The 3D view helped verify orientation, spacing, component placement, and readable labels before ordering the board and testing the Raspberry Pi output path.</p></div>
     </div>
   </div>
 </div>
