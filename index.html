@@ -559,7 +559,7 @@
 <div class="project-body">
   <div class="project-intro reveal neurogpio-intro">
     <div>
-      <h4>Classical machine learning, wired to a PCB.</h4>
+      <h4>EEG Classifier Overview</h4>
       <p>NeuroGPIO is a compact BCI project I built during Summer 2026 alongside my internship. It uses prerecorded EEG trials to classify motor-imagery states and turn the prediction into physical feedback. The output layer maps left hand, right hand, feet, tongue, and rest to separate LEDs on a custom Raspberry Pi PCB.</p>
       <p>The full pipeline runs from EEG trial playback to epoch windowing, filter-bank preprocessing, Common Spatial Patterns feature extraction, SelectKBest feature selection, Linear Discriminant Analysis classification, and GPIO output. Adding feature selection improved mean cross-validated accuracy from 83.9% to 85.9%, with a held-out demo result of 87.5%.</p>
       <p>This was my first project building both a PCB and an AI/ML decoder into one working system. The PCB is intentionally simple: a Raspberry Pi header, five current-limited LED outputs, and readable labels for each decoded class. It helped me understand not just how to train a classifier, but how to make model output useful in hardware: debugging Raspberry Pi GPIO, handling package/version issues, validating model changes with cross-validation, and translating software predictions into physical behavior.</p>
@@ -580,7 +580,7 @@
 
 <div class="parts-section">
   <p class="parts-label">System Snapshot</p>
-  <h3 class="reveal">The classifier output, made visible.</h3>
+  <h3 class="reveal">Classifier Output</h3>
   <div class="screen-grid reveal">
     <div class="screen-card">
       <img src="images/neurogpio-eeg-monitor.jpg" alt="NeuroGPIO EEG waveform monitor showing motor cortex EEG channels" />
@@ -595,19 +595,19 @@
 
 <div class="parts-section">
   <p class="parts-label">PCB Design</p>
-  <h3 class="reveal">From schematic to routed feedback board.</h3>
+  <h3 class="reveal">Simple PCB Design</h3>
   <div class="screen-grid reveal">
     <div class="screen-card">
       <img src="images/neurogpio-pcb-schematic.png" alt="NeuroGPIO PCB schematic with Raspberry Pi header, resistors, and LED outputs" />
-      <div class="screen-caption"><div class="part-title">Schematic</div><div class="part-subtitle">GPIO to LED feedback</div><p class="part-desc">The circuit maps Raspberry Pi GPIO pins to five labeled LED outputs for left hand, right hand, feet, tongue, and rest. Each LED path uses a current-limiting resistor and a shared ground reference.</p></div>
+      <div class="screen-caption"><div class="part-title">Schematic</div><div class="part-subtitle">GPIO to LED feedback</div><p class="part-desc">Five GPIO pins route through 330 ohm resistors to class-labeled LEDs.</p></div>
     </div>
     <div class="screen-card">
       <img src="images/neurogpio-pcb-layout.png" alt="NeuroGPIO routed PCB layout with header, traces, resistors, LEDs, and labels" />
-      <div class="screen-caption"><div class="part-title">PCB Layout</div><div class="part-subtitle">First routed board</div><p class="part-desc">The board layout keeps the Raspberry Pi header, traces, resistors, LEDs, and silkscreen labels visible so the hardware output can be debugged without guessing which prediction maps to which LED.</p></div>
+      <div class="screen-caption"><div class="part-title">PCB Layout</div><div class="part-subtitle">First routed board</div><p class="part-desc">Routed board with the Pi header, LED outputs, resistor paths, and silkscreen labels.</p></div>
     </div>
     <div class="screen-card">
       <img src="images/neurogpio-pcb-3d-preview.png" alt="NeuroGPIO 3D PCB preview showing the header, resistors, LED footprints, and silkscreen labels" />
-      <div class="screen-caption"><div class="part-title">3D Preview</div><div class="part-subtitle">Fabrication check</div><p class="part-desc">The 3D view helped verify orientation, spacing, component placement, and readable labels before ordering the board and testing the Raspberry Pi output path.</p></div>
+      <div class="screen-caption"><div class="part-title">3D Preview</div><div class="part-subtitle">Fabrication check</div><p class="part-desc">Final preview used to check placement and labels before fabrication.</p></div>
     </div>
   </div>
 </div>
@@ -633,7 +633,7 @@
 <div class="project-body">
   <div class="project-intro reveal">
     <div>
-      <h4>Why build a telescope when you can just buy one?</h4>
+      <h4>Telescope Build Overview</h4>
       <p>Because building one teaches you things no store-bought version ever could, like the exact moment a PVC sewer pipe sourced from a junkyard turns out not to be perfectly circular, and the whole optical path depends on it being circular.</p>
       <p>This project started with a question: could a cost-effective Dobsonian reflector be built from scratch using repurposed materials, then used for real science with results worth comparing to NASA&rsquo;s data? The answer turned out to be yes: 98.88% accuracy to NASA&rsquo;s published orbital period of Io, one of Jupiter&rsquo;s moons.</p>
       <p>A Dobsonian is a reflector telescope that bounces light off a large primary mirror at the bottom of the tube up to a small secondary mirror, which redirects it sideways into an eyepiece. The design is popular because it lets you build something large and powerful cheaply, which made it the right design to attempt at home, in high school, with junkyard parts.</p>
@@ -646,11 +646,11 @@
 </div>
 <div class="parts-section">
   <p class="parts-label">Build Log</p>
-  <h3 class="reveal">Every part, explained.</h3>
+  <h3 class="reveal">Telescope Build Log</h3>
   <div class="part-row reveal">
     <div class="part-img" style="max-height:600px;"><img src="images/07-planning.jpg" alt="Planning" style="object-position: center bottom;" /></div>
     <div class="part-text">
-      <div class="part-number">01</div><div class="part-title">The Kitchen Table Phase</div><div class="part-subtitle">Planning &amp; Calculations</div>
+      <div class="part-number">01</div><div class="part-title">Planning and Calculations</div><div class="part-subtitle">Planning &amp; Calculations</div>
       <p class="part-desc">Every build starts somewhere: a sheet of plywood, a TI-30X, a box cutter, a ruler, and ambitious notes. Before cutting anything, focal length, tube diameter, mirror size, and mounting geometry all had to be calculated.</p>
     </div>
   </div>
@@ -660,7 +660,7 @@
       <img src="images/09-first-assembly.jpg" alt="First assembly" style="object-position:center;" />
     </div>
     <div class="part-text">
-      <div class="part-number">02</div><div class="part-title">The Main Tube &amp; First Assembly</div><div class="part-subtitle">Primary Optical Tube / Junkyard PVC</div>
+      <div class="part-number">02</div><div class="part-title">Main Tube and First Assembly</div><div class="part-subtitle">Primary Optical Tube / Junkyard PVC</div>
       <p class="part-desc">The main tube holds the primary mirror at the bottom and the secondary mirror assembly at the top. This one came from a junkyard: a large-diameter PVC sewer pipe. The right photo shows first full assembly to verify the calculations held up.</p>
       <div class="part-struggle">The PVC wasn&rsquo;t perfectly round. Precise shimming and careful iteration fixed it, but everything downstream depended on getting this exactly right.</div>
     </div>
@@ -671,7 +671,7 @@
       <img src="images/11-finished-telescope.jpg" alt="Finished telescope" style="object-position:center;" />
     </div>
     <div class="part-text">
-      <div class="part-number">03</div><div class="part-title">The Rocker Box &amp; Dobsonian Mount</div><div class="part-subtitle">Alt-Az Mount / Plywood Build</div>
+      <div class="part-number">03</div><div class="part-title">Dobsonian Mount</div><div class="part-subtitle">Alt-Az Mount / Plywood Build</div>
       <p class="part-desc">The rocker box lets the telescope tip up and down (altitude), while the circular ground board allows it to rotate left and right (azimuth). Left shows prototype; right shows the finished telescope at dusk, painted and ready.</p>
     </div>
   </div>
@@ -695,7 +695,7 @@
   <div class="part-row flip reveal">
     <div class="part-img"><img src="images/16-spider.jpg" alt="Spider" /></div>
     <div class="part-text">
-      <div class="part-number">06</div><div class="part-title">The Spider</div><div class="part-subtitle">Secondary Mirror Holder / Three-Vane Assembly</div>
+      <div class="part-number">06</div><div class="part-title">Secondary Mirror Spider</div><div class="part-subtitle">Secondary Mirror Holder / Three-Vane Assembly</div>
       <p class="part-desc">The spider is the three-vane metal assembly that holds the secondary mirror centered inside the tube. The secondary redirects the light cone rising from the primary mirror 90&deg; out through the focuser to the eyepiece.</p>
       <div class="part-struggle">The non-circular tube caused the most trouble here. Shimming the primary mirror cell with washers to get the alignment right, then recollimating from scratch, was one of the more painstaking parts of the build.</div>
     </div>
@@ -706,21 +706,21 @@
       <img src="images/18-mirror-cell.jpg" alt="Mirror cell" style="object-position:center;" />
     </div>
     <div class="part-text">
-      <div class="part-number">07</div><div class="part-title">The Primary Mirror &amp; Cell</div><div class="part-subtitle">8&rdquo; Parabolic Mirror / Three-Point Support</div>
+      <div class="part-number">07</div><div class="part-title">Primary Mirror and Cell</div><div class="part-subtitle">8&rdquo; Parabolic Mirror / Three-Point Support</div>
       <p class="part-desc">The primary mirror is a precision-ground 8-inch parabolic reflector. The three thumb-screws are collimation adjusters. The right shows the mirror cell from behind: a plywood triangle with three spring-loaded clips so the mirror can flex with temperature changes without being stressed.</p>
     </div>
   </div>
   <div class="part-row flip reveal">
     <div class="part-img"><img src="images/19-looking-down-barrel.jpg" alt="Looking down barrel" /></div>
     <div class="part-text">
-      <div class="part-number">08</div><div class="part-title">Looking Down the Barrel</div><div class="part-subtitle">The Collimation View</div>
+      <div class="part-number">08</div><div class="part-title">Collimation View</div><div class="part-subtitle">Optical Alignment</div>
       <p class="part-desc">Looking straight down: the primary mirror at the bottom, framed by the tube&rsquo;s interior. When everything&rsquo;s aligned, the secondary mirror&rsquo;s reflection appears centered in the primary, and the eye appears centered in the secondary. Three concentric circles. Early sessions ran close to an hour; eventually it was under ten minutes.</p>
     </div>
   </div>
 </div>
 <div class="results-section">
   <p class="section-label">Outcome</p>
-  <h3>98.88% accurate.<br>Award-winning.<br>Built from scratch.</h3>
+  <h3>Telescope Results</h3>
   <div class="results-grid">
     <div class="result-card"><div class="result-num">98.88%</div><div class="result-label">Accuracy of measured orbital period of Io compared to NASA&rsquo;s published value</div></div>
     <div class="result-card"><div class="result-num">1st</div><div class="result-label">Place, Bucks County Science Research Competition, 2023, plus Baruch S. Blumberg Award</div></div>
@@ -750,7 +750,7 @@
 <div class="project-body">
   <div class="project-intro reveal">
     <div>
-      <h4>A robotic arm that does what your hand does.</h4>
+      <h4>Robotic Arm Overview</h4>
       <p>This is a six-axis robotic arm system that follows hand gestures end-to-end: a 3D-printed arm with a wearable glove transmitter. Put on the glove, move your hand, and the arm mirrors it in real time over Bluetooth.</p>
       <p>The arm covers gripper, wrist (two axes), elbow, shoulder pair, and base rotation. Every joint is independently controlled, with smooth trajectories and hardware protection limits built into the firmware. The whole thing runs on two separate power rails tied to a common ground to isolate the high-current stepper from the servo logic.</p>
       <p>The hardest part wasn't any single component. It was getting everything to talk to each other reliably: flex sensors, dual IMUs, two Arduinos, a Bluetooth link, a PWM driver, and a stepper driver, all in the same pipeline without dropping commands or glitching a servo.</p>
@@ -764,7 +764,7 @@
 
 <div class="parts-section">
   <p class="parts-label">Build Log</p>
-  <h3 class="reveal">Every part, explained.</h3>
+  <h3 class="reveal">Robotic Arm Components</h3>
 
   <div class="part-row reveal">
     <div class="part-imgs-grid">
@@ -773,7 +773,7 @@
     </div>
     <div class="part-text">
       <div class="part-number">01</div>
-      <div class="part-title">The Arm</div>
+      <div class="part-title">Arm Assembly</div>
       <div class="part-subtitle">3D-Printed / Six-Axis / NEMA-17 Base</div>
       <p class="part-desc">Fully 3D-printed across six axes: gripper, two wrist joints, elbow, shoulder pair, and a rotating base. The left photo shows one of the first major printed assemblies: the base bearing, gear, and fastener stack that everything else had to build on. The base uses a NEMA-17 stepper rather than a servo for significantly more torque. MG996-class servos handle the upper joints, driven through a PCA9685 PWM board over I2C so the Arduino Uno isn't tied up generating PWM signals directly.</p>
     </div>
@@ -783,7 +783,7 @@
     <div class="part-img"><img src="images/22-shoulder-joint-gear-mechanism.jpg" alt="Shoulder joint gear mechanism" /></div>
     <div class="part-text">
       <div class="part-number">02</div>
-      <div class="part-title">The Gripper</div>
+      <div class="part-title">Gripper</div>
       <div class="part-subtitle">MG996 Servo / Printed Gear Clamp</div>
       <p class="part-desc">The gripper uses a printed gear clamp mechanism driven by an MG996-class servo. The two jaw pieces mesh against each other so both sides move symmetrically when the servo turns. Getting the gear mesh right took several iterations: too tight and the servo stalls under grip load; too loose and there's backlash in the clamp motion. Tuned by adjusting print tolerances until it closed cleanly without slipping.</p>
     </div>
@@ -806,7 +806,7 @@
     </div>
     <div class="part-text">
       <div class="part-number">04</div>
-      <div class="part-title">The Gauntlet</div>
+      <div class="part-title">Wearable Controller</div>
       <div class="part-subtitle">Arduino Nano / Flex Sensors / Dual MPU6050</div>
       <p class="part-desc">Three flex sensors detect finger curl; two MPU6050 IMUs track wrist tilt and arm orientation. The close-up shows the glove-side electronics packed onto the wearable board: Arduino Nano, sensors, wiring, and battery all moving with the hand. The Nano reads all five inputs simultaneously and encodes the gesture into single-character commands: F/f for finger open/close, U/D for up/down, L/R for rotation. Compact by design, keeping the Bluetooth link fast and the arm-side parsing simple.</p>
     </div>
@@ -816,7 +816,7 @@
     <div class="part-img"><img src="images/25-arduino-nano-and-hc-05-bluetooth-module.jpg" alt="Arduino Nano and HC-05 Bluetooth module" /></div>
     <div class="part-text">
       <div class="part-number">05</div>
-      <div class="part-title">The Bluetooth Link</div>
+      <div class="part-title">Bluetooth Link</div>
       <div class="part-subtitle">HC-05 Master/Slave / Serial Command Protocol</div>
       <p class="part-desc">Paired HC-05 modules: master on the glove, slave on the arm. Once connected, the link behaves like a serial cable. One byte per command, no framing overhead. The Uno maps each character to a joint setpoint using incremental updates rather than absolute positions, so the arm moves smoothly even if commands arrive at variable intervals.</p>
     </div>
@@ -845,7 +845,7 @@
 <div class="project-body">
   <div class="project-intro reveal">
     <div>
-      <h4>A semester of embedded systems design on constrained hardware.</h4>
+      <h4>Embedded Systems Overview</h4>
       <p>This sequence was completed for my Embedded Systems class using the MSP432 LaunchPad and BoosterPack. The projects covered LCD graphics, UART, GPIO buttons, LEDs, timers, joystick input, ADC, PWM, interrupts, and low-level hardware control.</p>
       <p>The through-line was learning how to structure embedded applications as finite state machines, keep the main loop responsive, and move hardware-specific work into a HAL so the application code stayed readable.</p>
     </div>
@@ -858,7 +858,7 @@
 
 <div class="parts-section">
   <p class="parts-label">Class Projects</p>
-  <h3 class="reveal">The subprojects.</h3>
+  <h3 class="reveal">Class Projects</h3>
   <div class="subprojects-grid">
     <a class="subproject-card reveal" onclick="showProject('msp-minesweeper'); return false;" href="#">
       <div class="subproject-card-img">
@@ -909,7 +909,7 @@
 <div class="project-body">
   <div class="project-intro reveal">
     <div>
-      <h4>Minesweeper, but make it fit on a 128x128 screen.</h4>
+      <h4>Minesweeper Overview</h4>
       <p>This project turned the MSP432 and BoosterPack into a full Minesweeper game, complete with title, menu, instructions, setup, game, and results screens. The LCD shows the board, the terminal handles coordinate input, and the whole thing runs as a finite state machine with separate screen handlers.</p>
       <p>Before each game, the player chooses the number of mines, rows, and columns over UART. The game supports selecting cells, flagging mines, revealing blank regions with recursive flood fill, switching baud rates with BB1, and showing the active baud rate through the BoosterPack RGB LED.</p>
       <p><a class="project-card-link" href="https://github.com/sydneygro14/project1.git" target="_blank">View code</a></p>
@@ -923,7 +923,7 @@
 
 <div class="parts-section">
   <p class="parts-label">Screen States</p>
-  <h3 class="reveal">What it looked like on hardware.</h3>
+  <h3 class="reveal">LCD Screen States</h3>
   <div class="screen-grid">
     <div class="screen-card reveal">
       <img src="images/msp-minesweeper-title.jpg" alt="Minesweeper title screen" />
@@ -951,7 +951,7 @@
     </div>
     <div class="screen-card reveal">
       <img src="images/msp-minesweeper-lose.jpg" alt="Minesweeper lose screen" />
-      <div class="screen-caption"><div class="part-title">Lose Screen</div><div class="part-subtitle">Mine selected</div><p class="part-desc">Selecting a mine ends the game, because Minesweeper remains emotionally direct even on a microcontroller.</p></div>
+      <div class="screen-caption"><div class="part-title">Lose Screen</div><div class="part-subtitle">Mine selected</div><p class="part-desc">Selecting a mine ends the game and shows the loss state.</p></div>
     </div>
     <div class="screen-card reveal">
       <img src="images/msp-minesweeper-reveal.jpg" alt="Minesweeper mine reveal screen" />
@@ -984,7 +984,7 @@
 <div class="project-body">
   <div class="project-intro reveal">
     <div>
-      <h4>One board, five screens, many ways to wake the processor up.</h4>
+      <h4>Interrupt Tasks Overview</h4>
       <p>This project was built around interrupts: GPIO button presses, Timer32, UART receive, ADC joystick sampling, and PWM color mixing. The application cycles through a main menu and five task screens, each one demonstrating a different peripheral behavior on the MSP432 and BoosterPack.</p>
       <p>The hardest task was the Color Mixer. TimerA PWM drives the red, green, and blue LED channels independently through port mapping. JSB cycles the selected color, BB1 increases the value, BB2 decreases it, and the BoosterPack LED updates immediately.</p>
     </div>
@@ -997,7 +997,7 @@
 
 <div class="parts-section">
   <p class="parts-label">Screen States</p>
-  <h3 class="reveal">The tasks on the LCD.</h3>
+  <h3 class="reveal">LCD Task Screens</h3>
   <div class="screen-grid">
     <div class="screen-card reveal">
       <img src="images/msp-interrupts-menu.jpg" alt="Interrupt project main menu" />
@@ -1021,7 +1021,7 @@
     </div>
     <div class="screen-card reveal">
       <img src="images/msp-interrupts-color.jpg" alt="PWM color mixer screen" />
-      <div class="screen-caption"><div class="part-title">Color Mixer</div><div class="part-subtitle">TimerA PWM / Port Mapping</div><p class="part-desc">The final task mixes red, green, and blue LED channels independently with PWM. Tiny RGB control panel, basically.</p></div>
+      <div class="screen-caption"><div class="part-title">Color Mixer</div><div class="part-subtitle">TimerA PWM / Port Mapping</div><p class="part-desc">The final task mixes red, green, and blue LED channels independently with PWM.</p></div>
     </div>
   </div>
 </div>
@@ -1047,7 +1047,7 @@
 <div class="project-body">
   <div class="project-intro reveal">
     <div>
-      <h4>The idea: give surgeons back their sense of touch.</h4>
+      <h4>Haptic Feedback Overview</h4>
       <p>When performing delicate procedures like eye surgery, surgeons and students using forceps or other instruments lose a lot of tactile feedback. This project is an early-stage attempt to give some of that back, translating force data from the instrument into vibrational cues felt through the forearm in real time.</p>
       <p>A load cell sensor detects force applied at the instrument. That signal runs through an HX711 amplifier to an Arduino UNO, which maps the force reading to a vibration intensity and drives a vibrotactile motor embedded in a forearm-mounted band. Press harder on the forceps, feel more vibration through the wrist.</p>
       <p>This was also my first Arduino project. It's unfinished, genuinely pretty simple, and I'm including it because every project has a starting point. The haptic feedback work I did later in the Assistive Robotics Lab at Virginia Tech grew directly out of this.</p>
@@ -1061,13 +1061,13 @@
 
 <div class="parts-section">
   <p class="parts-label">Build Log</p>
-  <h3 class="reveal">The components.</h3>
+  <h3 class="reveal">System Components</h3>
 
   <div class="part-row reveal">
     <div class="part-img"><img src="images/27-full-system-laid-out.jpg" alt="Full system laid out" /></div>
     <div class="part-text">
       <div class="part-number">01</div>
-      <div class="part-title">The Full System</div>
+      <div class="part-title">Full System</div>
       <div class="part-subtitle">Load Cell / HX711 / Arduino UNO / Vibrotactile Band</div>
       <p class="part-desc">The full system laid out: load cell and housing (left), Arduino UNO on breadboard (center), and the forearm band with embedded vibrotactile motor (top right)..</p>
     </div>
@@ -1077,7 +1077,7 @@
     <div class="part-img"><img src="images/28-band-worn-on-wrist-during-testing.jpg" alt="Band worn on wrist during testing" /></div>
     <div class="part-text">
       <div class="part-number">02</div>
-      <div class="part-title">The Wristband in Use</div>
+      <div class="part-title">Wristband Test</div>
       <div class="part-subtitle">Vibrotactile Motor / Forearm Mount</div>
       <p class="part-desc">The band worn on the forearm during a test session. The vibrotactile motor sits against the skin and buzzes in proportion to the force reading from the load cell. The idea is that a surgeon, doctor, or student could wear this while using forceps and feel, through the band, how much pressure they're actually applying — useful for precision tasks and for training people who are still developing their technique.</p>
     </div>
